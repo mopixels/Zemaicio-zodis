@@ -1,0 +1,1522 @@
+[
+    {
+        "id": "1",
+        "title": "Abrūzdielis ",
+        "meaning": "šventojo paveikslas, ikona"
+    },
+    {
+        "id": "2",
+        "title": "Adīna",
+        "meaning": "valanda"
+    },
+    {
+        "id": "3",
+        "title": "Aktars",
+        "meaning": "hektaras"
+    },
+    {
+        "id": "4",
+        "title": "Akūrat",
+        "meaning": "tiksliai, iš tikrųjų"
+    },
+    {
+        "id": "5",
+        "title": "Akūratnē",
+        "meaning": "tiksliai"
+    },
+    {
+        "id": "6",
+        "title": "Alkierius",
+        "meaning": "mažas kambarys"
+    },
+    {
+        "id": "7",
+        "title": "Ana",
+        "meaning": "ji"
+    },
+    {
+        "id": "8",
+        "title": "Apciūgā",
+        "meaning": "replės"
+    },
+    {
+        "id": "9",
+        "title": "Apėntās",
+        "meaning": "vėl"
+    },
+    {
+        "id": "10",
+        "title": "Apieravuotė",
+        "meaning": "aukoti"
+    },
+    {
+        "id": "11",
+        "title": "Aplinkou",
+        "meaning": "aplink, aplinkinis"
+    },
+    {
+        "id": "12",
+        "title": "Aplouks",
+        "meaning": "aptvaras"
+    },
+    {
+        "id": "13",
+        "title": "Apošė",
+        "meaning": "drebulė"
+    },
+    {
+        "id": "14",
+        "title": "Apošruots",
+        "meaning": "drebulynas"
+    },
+    {
+        "id": "15",
+        "title": "Apsėguobtė koskelė",
+        "meaning": "užsirišti skarelę"
+    },
+    {
+        "id": "16",
+        "title": "Apsėkoutės",
+        "meaning": "apsišnerkštęs"
+    },
+    {
+        "id": "17",
+        "title": "Apsėriedītė",
+        "meaning": "apsirengti, persirengti"
+    },
+    {
+        "id": "18",
+        "title": "Atliektė",
+        "meaning": "atskristi"
+    },
+    {
+        "id": "19",
+        "title": "Atsėdoutė (kam)",
+        "meaning": "parduoti savo sielą"
+    },
+    {
+        "id": "20",
+        "title": "Atsėdoutė (kou)",
+        "meaning": "kvepėti (kuo)"
+    },
+    {
+        "id": "21",
+        "title": "Augiesnis, augiesnė",
+        "meaning": "vyresnis, vyresnė"
+    },
+    {
+        "id": "22",
+        "title": "Balondis",
+        "meaning": "karvelis"
+    },
+    {
+        "id": "23",
+        "title": "Balsē kriuoktė",
+        "meaning": "verkti visu balsu"
+    },
+    {
+        "id": "24",
+        "title": "Bašliks",
+        "meaning": "gobtuvas"
+    },
+    {
+        "id": "25",
+        "title": "Bengtė",
+        "meaning": "baigti"
+    },
+    {
+        "id": "26",
+        "title": "Bimbals",
+        "meaning": "gilys"
+    },
+    {
+        "id": "27",
+        "title": "Biržtvīns",
+        "meaning": "beržynas"
+    },
+    {
+        "id": "28",
+        "title": "Blezdinga",
+        "meaning": "kregždė"
+    },
+    {
+        "id": "29",
+        "title": "Bolbės",
+        "meaning": "bulvės"
+    },
+    {
+        "id": "30",
+        "title": "Būktās",
+        "meaning": "turbūt, tikriausiai, galbūt, lyg, tartum, tarytum, neva"
+    },
+    {
+        "id": "31",
+        "title": "Čainīks",
+        "meaning": "arbatinukas"
+    },
+    {
+        "id": "32",
+        "title": "Čemodans",
+        "meaning": "lagaminas"
+    },
+    {
+        "id": "33",
+        "title": "Čerā",
+        "meaning": "kerai, burtai, apžavai"
+    },
+    {
+        "id": "34",
+        "title": "Čeravotė",
+        "meaning": "kerėti, burti, apžavėti"
+    },
+    {
+        "id": "35",
+        "title": "Ciekavastis, ciekaunoms",
+        "meaning": "smalsumas, susidomėjimas"
+    },
+    {
+        "id": "36",
+        "title": "Ciekavytėis",
+        "meaning": "smalsauti, domėtis"
+    },
+    {
+        "id": "37",
+        "title": "Ciels",
+        "meaning": "visas, pilnas"
+    },
+    {
+        "id": "38",
+        "title": "Čiesus",
+        "meaning": "laikas"
+    },
+    {
+        "id": "39",
+        "title": "Ciongs",
+        "meaning": "skersvėjis"
+    },
+    {
+        "id": "40",
+        "title": "Cīrolis ",
+        "meaning": "vyturys"
+    },
+    {
+        "id": "41",
+        "title": "Cveks",
+        "meaning": "vinis"
+    },
+    {
+        "id": "42",
+        "title": "Dailē",
+        "meaning": "gražiai, dailiai"
+    },
+    {
+        "id": "43",
+        "title": "Darboutėis",
+        "meaning": "dirbti"
+    },
+    {
+        "id": "44",
+        "title": "Dėdlē daug",
+        "meaning": "labai daug"
+    },
+    {
+        "id": "45",
+        "title": "Dėdlē diekou!",
+        "meaning": "labai ačiū!"
+    },
+    {
+        "id": "46",
+        "title": "Dedlē tonkē",
+        "meaning": "labai dažnai"
+    },
+    {
+        "id": "47",
+        "title": "Dėdlē tonkē",
+        "meaning": "labai dažnai"
+    },
+    {
+        "id": "48",
+        "title": "Dėdlē, dėdėlē",
+        "meaning": "labai"
+    },
+    {
+        "id": "49",
+        "title": "Dėigtė",
+        "meaning": "sodinti"
+    },
+    {
+        "id": "50",
+        "title": "Diedlioutė",
+        "meaning": "dėlioti"
+    },
+    {
+        "id": "51",
+        "title": "Diekis",
+        "meaning": "lovatiesė"
+    },
+    {
+        "id": "52",
+        "title": "Diekou ož rokunda!",
+        "meaning": "ačiū už pokalbį!"
+    },
+    {
+        "id": "53",
+        "title": "Diekou!",
+        "meaning": "ačiū!"
+    },
+    {
+        "id": "54",
+        "title": "Dīvītėis",
+        "meaning": "stebėtis"
+    },
+    {
+        "id": "55",
+        "title": "Drobīnas",
+        "meaning": "kopėčios"
+    },
+    {
+        "id": "56",
+        "title": "Duovėna",
+        "meaning": "dovana"
+    },
+    {
+        "id": "57",
+        "title": "Duovėnuotė",
+        "meaning": "dovanoti"
+    },
+    {
+        "id": "58",
+        "title": "Dūršlioks, dėršlioks",
+        "meaning": "rėtis"
+    },
+    {
+        "id": "59",
+        "title": "Ėšalkau jiestė",
+        "meaning": "užsinorėjau valgyti, išalkau"
+    },
+    {
+        "id": "60",
+        "title": "Ėšplautė",
+        "meaning": "išplauti, išskalbti"
+    },
+    {
+        "id": "61",
+        "title": "Ešruodītė",
+        "meaning": "atrodyti"
+    },
+    {
+        "id": "62",
+        "title": "Eštorietė",
+        "meaning": "ištverti"
+    },
+    {
+        "id": "63",
+        "title": "Ėštratentė",
+        "meaning": "iškošti (piktai pasakyti)"
+    },
+    {
+        "id": "64",
+        "title": "Fainē",
+        "meaning": "linksmiai, smagiai"
+    },
+    {
+        "id": "65",
+        "title": "Fukteliavuotė",
+        "meaning": "išsijuoti"
+    },
+    {
+        "id": "66",
+        "title": "Gėmbė",
+        "meaning": "pakaba"
+    },
+    {
+        "id": "67",
+        "title": "Gimizã",
+        "meaning": "daržovės "
+    },
+    {
+        "id": "68",
+        "title": "Gondrakinis",
+        "meaning": "gandralizdis"
+    },
+    {
+        "id": "69",
+        "title": "Griūšus",
+        "meaning": "kriaušė"
+    },
+    {
+        "id": "70",
+        "title": "Gruobā",
+        "meaning": "žarnos"
+    },
+    {
+        "id": "71",
+        "title": "Gruopē",
+        "meaning": "rinkis"
+    },
+    {
+        "id": "72",
+        "title": "Gūrā",
+        "meaning": "palėpė"
+    },
+    {
+        "id": "73",
+        "title": "Iduomautėis (kou)",
+        "meaning": "domėtis (kuo)"
+    },
+    {
+        "id": "74",
+        "title": "Ikīps",
+        "meaning": "skersas, įstrižas"
+    },
+    {
+        "id": "75",
+        "title": "Imeigtė",
+        "meaning": "galėti, sugebėti"
+    },
+    {
+        "id": "76",
+        "title": "Isėveizietė",
+        "meaning": "įsižiūrėti, pamatyti"
+    },
+    {
+        "id": "77",
+        "title": "Iveizietė",
+        "meaning": "pamatyti, įžiūrėti, matyti"
+    },
+    {
+        "id": "78",
+        "title": "Je",
+        "meaning": "jeigu, jei"
+    },
+    {
+        "id": "79",
+        "title": "Jė",
+        "meaning": "taip"
+    },
+    {
+        "id": "80",
+        "title": "Jiestė",
+        "meaning": "valgyti, ėsti, graužti"
+    },
+    {
+        "id": "81",
+        "title": "Jiestė potra",
+        "meaning": "valgyti košę"
+    },
+    {
+        "id": "82",
+        "title": "Jopelė",
+        "meaning": "suknelė"
+    },
+    {
+        "id": "83",
+        "title": "Kaišėna",
+        "meaning": "bulvių skutyklė"
+    },
+    {
+        "id": "84",
+        "title": "Kalvarats",
+        "meaning": "verpimo ratelis"
+    },
+    {
+        "id": "85",
+        "title": "Kāp nuorintās",
+        "meaning": "kas nors, kažkas, kaip nors, kažkaip"
+    },
+    {
+        "id": "86",
+        "title": "Kāp vėsumet",
+        "meaning": "kaip visada"
+    },
+    {
+        "id": "87",
+        "title": "Kapalėšius",
+        "meaning": "skrybėlė"
+    },
+    {
+        "id": "88",
+        "title": "Karakteris",
+        "meaning": "charakteris"
+    },
+    {
+        "id": "89",
+        "title": "Kaulītė",
+        "meaning": "reikalauti"
+    },
+    {
+        "id": "90",
+        "title": "Kavuonės",
+        "meaning": "slėpynės"
+    },
+    {
+        "id": "91",
+        "title": "Kavuotė",
+        "meaning": "slėptis, prižiūrėti, globoti"
+    },
+    {
+        "id": "92",
+        "title": "Kavuotėis",
+        "meaning": "slėptis"
+    },
+    {
+        "id": "93",
+        "title": "Kėik",
+        "meaning": "kiek, kaip"
+    },
+    {
+        "id": "94",
+        "title": "Kėits",
+        "meaning": "kietas, tvirtas"
+    },
+    {
+        "id": "95",
+        "title": "Keravuotė",
+        "meaning": "saugoti"
+    },
+    {
+        "id": "96",
+        "title": "Kestės",
+        "meaning": "neštuvai"
+    },
+    {
+        "id": "97",
+        "title": "Kinis",
+        "meaning": "migis"
+    },
+    {
+        "id": "98",
+        "title": "Kiuocis",
+        "meaning": "krepšys"
+    },
+    {
+        "id": "99",
+        "title": "Klecks",
+        "meaning": "cepelinas, kleckā"
+    },
+    {
+        "id": "100",
+        "title": "Kloika",
+        "meaning": "ištižėlis"
+    },
+    {
+        "id": "101",
+        "title": "Kniaustė",
+        "meaning": "nieko nematyti"
+    },
+    {
+        "id": "102",
+        "title": "Kninga",
+        "meaning": "knyga"
+    },
+    {
+        "id": "103",
+        "title": "Kningas ė sāsvėnē",
+        "meaning": "knygos ir sąsiuviniai"
+    },
+    {
+        "id": "104",
+        "title": "Koisis, knioisis, kuisys",
+        "meaning": "uodas"
+    },
+    {
+        "id": "105",
+        "title": "Koistėis ",
+        "meaning": "ieškoti, šnerkštis"
+    },
+    {
+        "id": "106",
+        "title": "Koknė",
+        "meaning": "krosnis"
+    },
+    {
+        "id": "107",
+        "title": "Kor nuorintās",
+        "meaning": "kur nors, kažkur"
+    },
+    {
+        "id": "108",
+        "title": "Koskelė",
+        "meaning": "skarelė"
+    },
+    {
+        "id": "109",
+        "title": "Krėžis",
+        "meaning": "krepšis"
+    },
+    {
+        "id": "110",
+        "title": "Krieslos",
+        "meaning": "kėdė"
+    },
+    {
+        "id": "111",
+        "title": "Kriuoktė",
+        "meaning": "verkti"
+    },
+    {
+        "id": "112",
+        "title": "Kūjatis",
+        "meaning": "plaktukas"
+    },
+    {
+        "id": "113",
+        "title": "Kūlėnė tuora",
+        "meaning": "akmeninė tvora"
+    },
+    {
+        "id": "114",
+        "title": "Kūlinis aptvars",
+        "meaning": "akmeninis užtvaras"
+    },
+    {
+        "id": "115",
+        "title": "Kūlīns",
+        "meaning": "akmenynas"
+    },
+    {
+        "id": "116",
+        "title": "Kūlis",
+        "meaning": "akmuo"
+    },
+    {
+        "id": "117",
+        "title": "Kuntens",
+        "meaning": "sotus"
+    },
+    {
+        "id": "118",
+        "title": "Kuoks nuorintās",
+        "meaning": "koks nors, kažkoks"
+    },
+    {
+        "id": "119",
+        "title": "Kuožn-s/-a",
+        "meaning": "kiekvienas, kiekviena"
+    },
+    {
+        "id": "120",
+        "title": "Kūšinti",
+        "meaning": "liesti"
+    },
+    {
+        "id": "121",
+        "title": "Kuškis",
+        "meaning": "kuokštas"
+    },
+    {
+        "id": "122",
+        "title": "Kūtė",
+        "meaning": "tvartas, kluonas"
+    },
+    {
+        "id": "123",
+        "title": "Kvačē",
+        "meaning": "slėpynės"
+    },
+    {
+        "id": "124",
+        "title": "Kvartūgs",
+        "meaning": "prijuostė"
+    },
+    {
+        "id": "125",
+        "title": "Kvīnā",
+        "meaning": "kmynai"
+    },
+    {
+        "id": "126",
+        "title": "Laidars",
+        "meaning": "diendaržis"
+    },
+    {
+        "id": "127",
+        "title": "Lasītė",
+        "meaning": "rinkti"
+    },
+    {
+        "id": "128",
+        "title": "Lasītė ougas",
+        "meaning": "rinkti uogas"
+    },
+    {
+        "id": "129",
+        "title": "Ledžingas",
+        "meaning": "pačiūžos"
+    },
+    {
+        "id": "130",
+        "title": "Lėgo, lėg",
+        "meaning": "kaip, lyg"
+    },
+    {
+        "id": "131",
+        "title": "Leika",
+        "meaning": "piltuvas"
+    },
+    {
+        "id": "132",
+        "title": "Lėnciūgs",
+        "meaning": "grandinė"
+    },
+    {
+        "id": "133",
+        "title": "Lėzdas",
+        "meaning": "lizdas"
+    },
+    {
+        "id": "134",
+        "title": "Liauns",
+        "meaning": "plonas"
+    },
+    {
+        "id": "135",
+        "title": "Likterna",
+        "meaning": "žibintas"
+    },
+    {
+        "id": "136",
+        "title": "Lingīnė",
+        "meaning": "supynė"
+    },
+    {
+        "id": "137",
+        "title": "Liousos",
+        "meaning": "laisvas"
+    },
+    {
+        "id": "138",
+        "title": "Luinīs",
+        "meaning": "durnius"
+    },
+    {
+        "id": "139",
+        "title": "Luopeta",
+        "meaning": "kastuvas"
+    },
+    {
+        "id": "140",
+        "title": "Lūpu paišelė",
+        "meaning": "lūpų pieštukas"
+    },
+    {
+        "id": "141",
+        "title": "Malka",
+        "meaning": "krūva"
+    },
+    {
+        "id": "142",
+        "title": "Markna",
+        "meaning": "šlapias"
+    },
+    {
+        "id": "143",
+        "title": "Mašinavuotė",
+        "meaning": "separuoti pieną"
+    },
+    {
+        "id": "144",
+        "title": "Matītėis",
+        "meaning": "matyt"
+    },
+    {
+        "id": "145",
+        "title": "Mažne",
+        "meaning": "beveik, vos"
+    },
+    {
+        "id": "146",
+        "title": "Mėiga",
+        "meaning": "aruodas, līsvė"
+    },
+    {
+        "id": "147",
+        "title": "Mėrkals",
+        "meaning": "padažas"
+    },
+    {
+        "id": "148",
+        "title": "Mėslės",
+        "meaning": "mintys"
+    },
+    {
+        "id": "149",
+        "title": "Mėslītė",
+        "meaning": "galvoti, manyti"
+    },
+    {
+        "id": "150",
+        "title": "Muotrėšks (būdv.)",
+        "meaning": "moteriška"
+    },
+    {
+        "id": "151",
+        "title": "Muotrėška (daikt.)",
+        "meaning": "moteris"
+    },
+    {
+        "id": "152",
+        "title": "Muotrėškas žekės",
+        "meaning": "moteriškos kojinės"
+    },
+    {
+        "id": "153",
+        "title": "Mustās (musėntās, musiet)",
+        "meaning": "tikriausiai"
+    },
+    {
+        "id": "154",
+        "title": "Naujīna",
+        "meaning": "naujiena"
+    },
+    {
+        "id": "155",
+        "title": "Nebstavuotė",
+        "meaning": "nebepajėgti, nebebūti pajėgiam,"
+    },
+    {
+        "id": "156",
+        "title": "Nekūšink to monės",
+        "meaning": "neliesk tu manęs"
+    },
+    {
+        "id": "157",
+        "title": "Neprietis",
+        "meaning": "priešas"
+    },
+    {
+        "id": "158",
+        "title": "Nėrtinis",
+        "meaning": "megztinis"
+    },
+    {
+        "id": "159",
+        "title": "Nerušvakuok to mona daiktū",
+        "meaning": "neliesk mano daiktų"
+    },
+    {
+        "id": "160",
+        "title": "Nikumet",
+        "meaning": "niekada"
+    },
+    {
+        "id": "161",
+        "title": "Nuognē",
+        "meaning": "labai, nepaprastai"
+    },
+    {
+        "id": "162",
+        "title": "Nuorintās",
+        "meaning": "nors"
+    },
+    {
+        "id": "163",
+        "title": "Ondou",
+        "meaning": "vanduo"
+    },
+    {
+        "id": "164",
+        "title": "Ons",
+        "meaning": "jis"
+    },
+    {
+        "id": "165",
+        "title": "Ons jau sovėsam nebipaēt",
+        "meaning": "jis jau visai nebepaeina"
+    },
+    {
+        "id": "166",
+        "title": "Ons, Onsās",
+        "meaning": "jis"
+    },
+    {
+        "id": "167",
+        "title": "Ontrēp",
+        "meaning": "atvirkščiai, išvirkščiai, aukštyn kojom"
+    },
+    {
+        "id": "168",
+        "title": "Ontsėvėlktė",
+        "meaning": "apsivilkti (ant ko)"
+    },
+    {
+        "id": "169",
+        "title": "Pabonga",
+        "meaning": "pabaiga"
+    },
+    {
+        "id": "170",
+        "title": "Padėrbtė",
+        "meaning": "padaryti"
+    },
+    {
+        "id": "171",
+        "title": "Padīvītė",
+        "meaning": "nustebti, palaikyti (ką) keistu"
+    },
+    {
+        "id": "172",
+        "title": "Paišelė",
+        "meaning": "pieštukas"
+    },
+    {
+        "id": "173",
+        "title": "Pakavuotė",
+        "meaning": "paslėpti"
+    },
+    {
+        "id": "174",
+        "title": "Pakavuots nu svetėmū akiū",
+        "meaning": "paslėptas nuo svetimų akių"
+    },
+    {
+        "id": "175",
+        "title": "Pakosavuotė",
+        "meaning": "paskatinti"
+    },
+    {
+        "id": "176",
+        "title": "Palē (kon)",
+        "meaning": "pagal (ką)"
+    },
+    {
+        "id": "177",
+        "title": "Palėktė",
+        "meaning": "likti, pasilikti"
+    },
+    {
+        "id": "178",
+        "title": "Pamėnavuotė",
+        "meaning": "paminėti"
+    },
+    {
+        "id": "179",
+        "title": "Pamėslītė",
+        "meaning": "pagalvoti"
+    },
+    {
+        "id": "180",
+        "title": "Pamīlietė",
+        "meaning": "įsimylėti, pamilti"
+    },
+    {
+        "id": "181",
+        "title": "Par",
+        "meaning": "per"
+    },
+    {
+        "id": "182",
+        "title": "Pariedīms",
+        "meaning": "įrengimas, įrenginys"
+    },
+    {
+        "id": "183",
+        "title": "Pas (kuo)",
+        "meaning": "pas (ką)"
+    },
+    {
+        "id": "184",
+        "title": "Pas monės",
+        "meaning": "pas mane"
+    },
+    {
+        "id": "185",
+        "title": "Pasėkavuotė",
+        "meaning": "pasislėpti"
+    },
+    {
+        "id": "186",
+        "title": "Pasėrokoutė dailē",
+        "meaning": "pasikalbėti gražuoju"
+    },
+    {
+        "id": "187",
+        "title": "Patermasas",
+        "meaning": "padažas"
+    },
+    {
+        "id": "188",
+        "title": "Patruopītė",
+        "meaning": "pataikyti"
+    },
+    {
+        "id": "189",
+        "title": "Pažiubintė",
+        "meaning": "pašviesti"
+    },
+    {
+        "id": "190",
+        "title": "Pelkė",
+        "meaning": "vandens bala"
+    },
+    {
+        "id": "191",
+        "title": "Pėtelnė",
+        "meaning": "keptuvė"
+    },
+    {
+        "id": "192",
+        "title": "Pīlė",
+        "meaning": "antis"
+    },
+    {
+        "id": "193",
+        "title": "Pilīčė",
+        "meaning": "dildė"
+    },
+    {
+        "id": "194",
+        "title": "Pinings, piningā",
+        "meaning": "pinigai"
+    },
+    {
+        "id": "195",
+        "title": "Plints",
+        "meaning": "plyta, plentas"
+    },
+    {
+        "id": "196",
+        "title": "Poškoutė",
+        "meaning": "linguoti,puškuoti, šnopuoti"
+    },
+    {
+        "id": "197",
+        "title": "Potra",
+        "meaning": "košė"
+    },
+    {
+        "id": "198",
+        "title": "Pratintaliuotė",
+        "meaning": "kaboti (kažkiek laiko)"
+    },
+    {
+        "id": "199",
+        "title": "Pri",
+        "meaning": "prie, pas"
+    },
+    {
+        "id": "200",
+        "title": "Priemenė",
+        "meaning": "prieangis"
+    },
+    {
+        "id": "201",
+        "title": "Prietelis",
+        "meaning": "asmuo, geras žmogus"
+    },
+    {
+        "id": "202",
+        "title": "Prigimts",
+        "meaning": "gimtasis, gimtoji"
+    },
+    {
+        "id": "203",
+        "title": "Pritėktė",
+        "meaning": "tikti, derėti"
+    },
+    {
+        "id": "204",
+        "title": "Pruosītė",
+        "meaning": "lyginti"
+    },
+    {
+        "id": "205",
+        "title": "Pruosus",
+        "meaning": "lygintuvas"
+    },
+    {
+        "id": "206",
+        "title": "Punčiakas",
+        "meaning": "kojinės"
+    },
+    {
+        "id": "207",
+        "title": "Puodė",
+        "meaning": "krikštavaikis"
+    },
+    {
+        "id": "208",
+        "title": "Rakonds",
+        "meaning": "įrankis"
+    },
+    {
+        "id": "209",
+        "title": "Ratā (dgs.)",
+        "meaning": "vežimas"
+    },
+    {
+        "id": "210",
+        "title": "Ratpiedis",
+        "meaning": "stipinas"
+    },
+    {
+        "id": "211",
+        "title": "Ratu tekėnis",
+        "meaning": "vežimo ratas"
+    },
+    {
+        "id": "212",
+        "title": "Rėba",
+        "meaning": "šonkaulis"
+    },
+    {
+        "id": "213",
+        "title": "Rėkioutėis",
+        "meaning": "ruoštis"
+    },
+    {
+        "id": "214",
+        "title": "Riktingā",
+        "meaning": "tikrai, gerokai, iš esmės"
+    },
+    {
+        "id": "215",
+        "title": "Rokoutėis",
+        "meaning": "kalbėti, šnekėti, šnekučiuotis"
+    },
+    {
+        "id": "216",
+        "title": "Rokunda",
+        "meaning": "pokalbis"
+    },
+    {
+        "id": "217",
+        "title": "Ropotes",
+        "meaning": "bulvės"
+    },
+    {
+        "id": "218",
+        "title": "Rubežius",
+        "meaning": "siena, linija, pakraštys"
+    },
+    {
+        "id": "219",
+        "title": "Ruoda",
+        "meaning": "šneka, pokalbis, pasišnekėjimas"
+    },
+    {
+        "id": "220",
+        "title": "Ruods",
+        "meaning": "turbūt"
+    },
+    {
+        "id": "221",
+        "title": "Rušavuotė",
+        "meaning": "liesti"
+    },
+    {
+        "id": "222",
+        "title": "Šalėp",
+        "meaning": "šalia, greta"
+    },
+    {
+        "id": "223",
+        "title": "Sāsvėnīs",
+        "meaning": "sąsiuvinis"
+    },
+    {
+        "id": "224",
+        "title": "Šėnavuotė",
+        "meaning": "rūpintis, prižiūrėti"
+    },
+    {
+        "id": "225",
+        "title": "Šieks",
+        "meaning": "silosas"
+    },
+    {
+        "id": "226",
+        "title": "Šieps, šiepėlis",
+        "meaning": "spinta"
+    },
+    {
+        "id": "227",
+        "title": "Sierčėkā",
+        "meaning": "degtukai"
+    },
+    {
+        "id": "228",
+        "title": "Šiperis",
+        "meaning": "sklendė"
+    },
+    {
+        "id": "229",
+        "title": "Skadā",
+        "meaning": "laiptai"
+    },
+    {
+        "id": "230",
+        "title": "Skadās lėptė ",
+        "meaning": "lipti laiptais"
+    },
+    {
+        "id": "231",
+        "title": "Skalītė",
+        "meaning": "loti"
+    },
+    {
+        "id": "232",
+        "title": "Skleps",
+        "meaning": "rūsys"
+    },
+    {
+        "id": "233",
+        "title": "Šlams",
+        "meaning": "šiukšlės, sąšlavos"
+    },
+    {
+        "id": "234",
+        "title": "Slaptuomės",
+        "meaning": "slapčia"
+    },
+    {
+        "id": "235",
+        "title": "Slostē",
+        "meaning": "spąstai"
+    },
+    {
+        "id": "236",
+        "title": "Smagos",
+        "meaning": "stiprus, sunkus"
+    },
+    {
+        "id": "237",
+        "title": "Smetuons",
+        "meaning": "grietinė"
+    },
+    {
+        "id": "238",
+        "title": "Šnobelis",
+        "meaning": "nosis"
+    },
+    {
+        "id": "239",
+        "title": "Sodiedlioutė",
+        "meaning": "sudėlioti"
+    },
+    {
+        "id": "240",
+        "title": "Solasītė",
+        "meaning": "surinkti"
+    },
+    {
+        "id": "241",
+        "title": "Someigtė",
+        "meaning": "mokėti, sugebėti"
+    },
+    {
+        "id": "242",
+        "title": "Sosėvadintė",
+        "meaning": "sukviesti, surinkti"
+    },
+    {
+        "id": "243",
+        "title": "Sovėsam",
+        "meaning": "visai"
+    },
+    {
+        "id": "244",
+        "title": "Spėitlios",
+        "meaning": "spiečius (ties. ir perk. reikšme)"
+    },
+    {
+        "id": "245",
+        "title": "Spongė",
+        "meaning": "akis (niekinamasis)"
+    },
+    {
+        "id": "246",
+        "title": "Sprostis",
+        "meaning": "pakaba"
+    },
+    {
+        "id": "247",
+        "title": "Špuokinīčė",
+        "meaning": "inkilas"
+    },
+    {
+        "id": "248",
+        "title": "Špuoks",
+        "meaning": "varnėnas"
+    },
+    {
+        "id": "249",
+        "title": "Špuosos",
+        "meaning": "juokas"
+    },
+    {
+        "id": "250",
+        "title": "Stavuotė",
+        "meaning": "pajėgti, būti pajėgiam,"
+    },
+    {
+        "id": "251",
+        "title": "Sviets",
+        "meaning": "pasaulis"
+    },
+    {
+        "id": "252",
+        "title": "Taisītė",
+        "meaning": "taisyti, ruošti"
+    },
+    {
+        "id": "253",
+        "title": "Tat",
+        "meaning": "taigi, tai, juk, gi"
+    },
+    {
+        "id": "254",
+        "title": "Tatā",
+        "meaning": "tai, o tai, tai čia"
+    },
+    {
+        "id": "255",
+        "title": "Tauzītė",
+        "meaning": "šnekėti, pasakoti nesąmones"
+    },
+    {
+        "id": "256",
+        "title": "Tėik",
+        "meaning": "tiek, taip"
+    },
+    {
+        "id": "257",
+        "title": "Tėik skanē kvep",
+        "meaning": "taip skaniai kvepia"
+    },
+    {
+        "id": "258",
+        "title": "Tekėnė ratpiedē",
+        "meaning": "rato stipinai"
+    },
+    {
+        "id": "259",
+        "title": "Tekėnis",
+        "meaning": "ratas (automobilio, vežimo)"
+    },
+    {
+        "id": "260",
+        "title": "Tėktė",
+        "meaning": "patikti"
+    },
+    {
+        "id": "261",
+        "title": "Tintaliuotė",
+        "meaning": "kaboti"
+    },
+    {
+        "id": "262",
+        "title": "Tonkē",
+        "meaning": "dažnai"
+    },
+    {
+        "id": "263",
+        "title": "Tonkē vėn",
+        "meaning": "dažnokai"
+    },
+    {
+        "id": "264",
+        "title": "Toukart",
+        "meaning": "tuomet, tuometinis"
+    },
+    {
+        "id": "265",
+        "title": "Tručīna",
+        "meaning": "nuodai"
+    },
+    {
+        "id": "266",
+        "title": "Tručītė",
+        "meaning": "nuodyti"
+    },
+    {
+        "id": "267",
+        "title": "Truoba",
+        "meaning": "gyvenamas namas, troba"
+    },
+    {
+        "id": "268",
+        "title": "Truopnē",
+        "meaning": "tikrai, tiksliai, kruopščiai"
+    },
+    {
+        "id": "269",
+        "title": "Tumsībė",
+        "meaning": "tamsa"
+    },
+    {
+        "id": "270",
+        "title": "Tuora",
+        "meaning": "tvora"
+    },
+    {
+        "id": "271",
+        "title": "Turielka",
+        "meaning": "lėkštė"
+    },
+    {
+        "id": "272",
+        "title": "Ukulis",
+        "meaning": "debesis"
+    },
+    {
+        "id": "273",
+        "title": "Uzbuons",
+        "meaning": "ąsotis"
+    },
+    {
+        "id": "274",
+        "title": "Vaks",
+        "meaning": "vaikas"
+    },
+    {
+        "id": "275",
+        "title": "Vāks kriuok",
+        "meaning": "vaikas verkia"
+    },
+    {
+        "id": "276",
+        "title": "Valns",
+        "meaning": "laisvas, nepriklausomas"
+    },
+    {
+        "id": "277",
+        "title": "Vambuolė",
+        "meaning": "kamanė"
+    },
+    {
+        "id": "278",
+        "title": "Varažītė",
+        "meaning": "burti"
+    },
+    {
+        "id": "279",
+        "title": "Vėdelčius",
+        "meaning": "šakutė"
+    },
+    {
+        "id": "280",
+        "title": "Veikē",
+        "meaning": "greitai, greit, neužilgo"
+    },
+    {
+        "id": "281",
+        "title": "mokėti, sugebėti",
+        "meaning": "netrukus, gana greitai"
+    },
+    {
+        "id": "282",
+        "title": "Veizietė",
+        "meaning": "žiūrėti"
+    },
+    {
+        "id": "283",
+        "title": "Veizuolā",
+        "meaning": "akys (niekinamasis)"
+    },
+    {
+        "id": "284",
+        "title": "Vėn ė vėn",
+        "meaning": "visą laiką, visada, visuomet"
+    },
+    {
+        "id": "285",
+        "title": "Vėn liuob slaptuoms ateitė",
+        "meaning": "vis slapčia ateidavo"
+    },
+    {
+        "id": "286",
+        "title": "Vėndzīkla",
+        "meaning": "rūkykla"
+    },
+    {
+        "id": "287",
+        "title": "Veselė",
+        "meaning": "vestuvės"
+    },
+    {
+        "id": "288",
+        "title": "Vėsumet",
+        "meaning": "visada, visuomet"
+    },
+    {
+        "id": "289",
+        "title": "Viedrus, viedros",
+        "meaning": "kibiras"
+    },
+    {
+        "id": "290",
+        "title": "Vīrā ė muotrėškas",
+        "meaning": "vyrai ir moterys"
+    },
+    {
+        "id": "291",
+        "title": "Virbinīčė",
+        "meaning": "malkinė"
+    },
+    {
+        "id": "292",
+        "title": "Vīrėškas žekės",
+        "meaning": "vyriškos kojinės"
+    },
+    {
+        "id": "293",
+        "title": "Vuodingas",
+        "meaning": "kenksmingas, pražūtingas, žalingas"
+    },
+    {
+        "id": "294",
+        "title": "Vuotkuotis",
+        "meaning": "botkotis"
+    },
+    {
+        "id": "295",
+        "title": "Zaunītė",
+        "meaning": "šūkauti"
+    },
+    {
+        "id": "296",
+        "title": "Zeimaris",
+        "meaning": "pjovimo staklės"
+    },
+    {
+        "id": "297",
+        "title": "Žekė",
+        "meaning": "kojinė"
+    },
+    {
+        "id": "298",
+        "title": "Žlėbė",
+        "meaning": "akys (niekinamasis)"
+    },
+    {
+        "id": "299",
+        "title": "Zopė",
+        "meaning": "sriuba"
+    },
+    {
+        "id": "300",
+        "title": "Zuomats",
+        "meaning": "tvora (mūrinė arba akmenų)"
+    },
+    {
+        "id": "301",
+        "title": "Zuovieskā",
+        "meaning": "vyriai"
+    },
+    {
+        "id": "302",
+        "title": "Zvanītė",
+        "meaning": "skambinti varpais"
+    },
+    {
+        "id": "303",
+        "title": "Pargoldīms",
+        "meaning": "vertimas"
+    },
+    {
+        "id": "304",
+        "title": "Aple",
+        "meaning": "apie"
+    }
+]

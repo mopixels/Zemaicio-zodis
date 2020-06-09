@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Žemaičio žodis",
+    "slug": "zemaiciozodis",
+    "sdkVersion": "37.0.0",
+    "privacy": "public",
+    "platforms": [
+      "android"
+    ],
+    "notification": {
+      "icon": "./img/icon.png"
+    },
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./img/icon.png",
+    "splash": {
+      "image": "./img/splash.png",
+      "resizeMode": "contain"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.mopixels.zemaiciozodis",
+      "versionCode": 1,
+      "permissions": [
+        "VIBRATE",
+        "NOTIFICATIONS"
+      ]
+    },
+    "description": ""
+  }
+}
