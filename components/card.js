@@ -12,7 +12,7 @@ export default function Card() {
     // const language = displayLanguage.language
     
     const loadRandomWord = () => { 
-        let randomNumber = Math.floor(Math.random() * 304);
+        let randomNumber = Math.floor(Math.random() * 2818);
         let randomTitle = data[randomNumber].title;
         let randomMeaning = data[randomNumber].meaning;
         setTitle(randomTitle);

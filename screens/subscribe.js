@@ -12,7 +12,7 @@ export default function Subcribe() {
   const displayLanguage = useSelector( state => state.displayLanguage );
   const language = displayLanguage.language
 
-  let randomNumber = Math.floor(Math.random() * 304);
+  let randomNumber = Math.floor(Math.random() * 2818);
   const randomTitle =  data[randomNumber].title 
   const randomMeaning = data[randomNumber].meaning
 
