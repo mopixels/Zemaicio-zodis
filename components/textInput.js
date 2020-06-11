@@ -29,28 +29,27 @@ export default function InputSearch() {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        flexDirection: 'row', 
-        alignContent: 'space-between'
-    },
-    inputContainer: {
-        flex:1,
-        height: 40,
-        width: '120%',
-        borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, .8)',
-        borderBottomWidth: 0, 
-        marginTop: 25,
-        marginLeft: -35,
-        paddingHorizontal: 15,
-    },
-      textInput: {
-        flex: 1,
-        width: 160,
-    },
-    
-      iconStyle: {
-        paddingRight: 5,
-      },
+  container:{
+    flex: 1,
+    flexDirection: 'row', 
+    alignContent: 'space-between'
+  },
+  inputContainer: {
+    flex:1,
+    height: 40,
+    width: '120%',
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, .8)',
+    borderBottomWidth: 0, 
+    marginTop: 25,
+    marginLeft: -35,
+    paddingHorizontal: 15,
+  },
+  textInput: {
+    flex: 1,
+    width: 160,
+  },
+  iconStyle: {
+    paddingRight: 5,
+  },
 })

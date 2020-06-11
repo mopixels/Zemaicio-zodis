@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-// import { useSelector } from 'react-redux';
 import { StyleSheet, TouchableOpacity, Text, Clipboard, Vibration, ToastAndroid } from 'react-native';
 import data from '../assets/data.json';
+import { actuatedNormalize } from './actuatedNormalize';
 
 export default function Card() {
 
     const [ title, setTitle ] = useState('');
     const [ meaning, setMeaning] = useState('');
-
-    // const displayLanguage = useSelector( state => state.displayLanguage );
-    // const language = displayLanguage.language
     
     const loadRandomWord = () => { 
         let randomNumber = Math.floor(Math.random() * 2818);
@@ -52,7 +49,7 @@ const styles = StyleSheet.create ({
     },
     title: {
         fontFamily: 'IMFellDWPica',
-        fontSize: 52,
+        fontSize: actuatedNormalize(50),
         textAlign: 'center',
         zIndex: 2,
     },
@@ -62,14 +59,14 @@ const styles = StyleSheet.create ({
         textAlign: 'center',
         paddingLeft: 5,
         paddingRight: 5,
-        fontSize: 32,
+        fontSize: actuatedNormalize(30),
         fontFamily: 'IMFellDWPica',
         zIndex: 2,
     },
     topQuote: {
         position: 'absolute',
-        top: -20,
-        left: -28,
+        top: -25,
+        left: -30,
         fontFamily: 'IMFellDWPica',
         fontSize: 150,
         color: '#f4f2f2',

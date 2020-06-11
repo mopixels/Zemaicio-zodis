@@ -3,17 +3,21 @@ import { StyleSheet, Image, View } from 'react-native';
 
 const Logo = () => {
     return  (
-    <View> 
+    <View style={styles.container}> 
         <Image style={styles.logo} source={require('../img/home_flag.png')} />
     </View>
     )
 };
 
 const styles = StyleSheet.create ({
-    logo: {
+    container: {
         alignSelf: 'center',
-        width: 120,
-        height: 100
+        width: '24%',
+        height: "13%"
+    },
+    logo: {
+        width: '100%',
+        height: "100%"
     }
 });
 

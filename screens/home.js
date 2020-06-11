@@ -4,7 +4,9 @@ import Logo from '../components/logo';
 import Card from '../components/card';
 import Btn from '../components/btn';
 import LanguagePicker from '../components/languagePicker';
+import { actuatedNormalize } from '../components/actuatedNormalize';
 import { useSelector } from 'react-redux';
+
 
 export default function Home({navigation}) {
 
@@ -28,31 +30,31 @@ export default function Home({navigation}) {
   );
 }
   
-  const styles = StyleSheet.create({
-    background: {
-      flex: 1,
-    },
-    content: {
-      flex: 1,
-      paddingTop:30, 
-    },
-    title: {
-      paddingLeft: 10,
-      fontSize: 30,
-      fontFamily: 'IMFellDWPica-Italic',
-    },
-    navigation: {
-      padding: 10,  
-    },
-    button: {
-      borderColor: '#5a748d',
-      margin: 10,
-      borderRadius: 50,
-      backgroundColor: '#5a748d',
-      opacity: .85,
-      elevation: 2,
-    },
-    buttonTxt: {
-      color: '#d9d9d9',
-    },
-  });
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    paddingTop:30, 
+  },
+  title: {
+    paddingLeft: 10,
+    fontSize: actuatedNormalize(28),
+    fontFamily: 'IMFellDWPica-Italic',
+  },
+  navigation: {
+    padding: 10,  
+  },
+  button: {
+    borderColor: '#5a748d',
+    margin: actuatedNormalize(10),
+    borderRadius: 50,
+    backgroundColor: '#5a748d',
+    opacity: .85,
+    elevation: 2,
+  },
+  buttonTxt: {
+    color: '#d9d9d9',
+  },
+});

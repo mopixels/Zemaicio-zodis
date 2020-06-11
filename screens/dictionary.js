@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Clipboard, Vibration, ToastAndroid, Dimensions } from 'react-native';
 import allData from '../assets/data.json';
 import { FlatList } from 'react-native-gesture-handler';
-
+import { actuatedNormalize } from '../components/actuatedNormalize';
 import { useSelector } from 'react-redux';
 
 
@@ -45,31 +45,31 @@ export default function Dictionary() {
     setData(allData);
   }, [] )
 
-      return (
-        <ImageBackground source={require('../img/screen_background.jpg')} style={styles.background} > 
-          <View style={styles.container}>
-            <FlatList
-            keyExtractor={(word) => word.id}
-            data={ inputLanguage ? filteredWord : filteredWord.sort((a, b) => a.meaning.localeCompare(b.meaning)) }
-            renderItem={( {item} ) => (
-              <View style={styles.line}>
-                <TouchableOpacity  onLongPress={() => writeToClipboard(`${item.title} - ${item.meaning}`)}> 
-                  { inputLanguage ? 
-                    <View style={styles.grid}>
-                      <Text style={styles.title}>{capitalizeFirstLetter(item.title)}</Text>
-                      <Text style={styles.meaning}>{item.meaning}</Text>
-                    </View>
-                  : <View style={styles.grid}>
-                      <Text style={styles.titleInLt}>{capitalizeFirstLetter(item.meaning)}</Text>
-                      <Text style={styles.meaningInLt}>{item.title}</Text>
-                    </View> }
-                </TouchableOpacity>
-              </View>
-            )} />
+  return (
+    <ImageBackground source={require('../img/screen_background.jpg')} style={styles.background} > 
+      <View style={styles.container}>
+        <FlatList
+        keyExtractor={(word) => word.id}
+        data={ inputLanguage ? filteredWord : filteredWord.sort((a, b) => a.meaning.localeCompare(b.meaning)) }
+        renderItem={( {item} ) => (
+          <View style={styles.line}>
+            <TouchableOpacity  onLongPress={() => writeToClipboard(`${item.title} - ${item.meaning}`)}> 
+              { inputLanguage ? 
+                <View style={styles.grid}>
+                  <Text style={styles.title}>{capitalizeFirstLetter(item.title)}</Text>
+                  <Text style={styles.meaning}>{item.meaning}</Text>
+                </View>
+              : <View style={styles.grid}>
+                  <Text style={styles.titleInLt}>{capitalizeFirstLetter(item.meaning)}</Text>
+                  <Text style={styles.meaningInLt}>{item.title}</Text>
+                </View> }
+            </TouchableOpacity>
           </View>
-        </ImageBackground>
-      );
-    }
+        )} />
+      </View>
+    </ImageBackground>
+  );
+}
 
 const styles = StyleSheet.create({
   background : {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     width: '40%',
-    fontSize: 20,
+    fontSize: actuatedNormalize(18),
     fontFamily: 'Merriweather-Bold',
     paddingVertical: 4,
     paddingLeft: 10,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   meaning: {
     width: '60%',
-    fontSize: 16,
+    fontSize: actuatedNormalize(16),
     fontFamily: 'Merriweather-Regular',
     paddingVertical: 4,
     paddingHorizontal: 5,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   titleInLt: {
     flex: 1,
     width: '60%',
-    fontSize: 18,
+    fontSize: actuatedNormalize(18),
     fontFamily: 'Merriweather-Bold',
     paddingVertical: 4,
     paddingLeft: 10,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   meaningInLt: {
     width: '40%',
     textTransform: 'lowercase',
-    fontSize: 16,
+    fontSize: actuatedNormalize(16),
     fontFamily: 'Merriweather-Regular',
     paddingVertical: 4,
     paddingHorizontal: 5,

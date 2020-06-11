@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { actuatedNormalize } from './actuatedNormalize';
 
 const Btn = props => {
     return (
@@ -13,12 +14,10 @@ const Btn = props => {
     )
 }
 
-
 const styles = StyleSheet.create({
-
     btn: {
         borderRadius: 20,
-        paddingVertical: 14,
+        paddingVertical: actuatedNormalize(12),
         paddingHorizontal: 10,
         borderColor: 'black',
         borderWidth: 2,
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
         color: 'black',
         fontWeight: 'bold',
         textTransform: 'uppercase',
-        fontSize: 24,
+        fontSize: actuatedNormalize(22),
         textAlign: 'center',
     }
 })

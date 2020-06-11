@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { View,  StyleSheet, Text, ImageBackground, Dimensions } from 'react-native';
+import React, { useEffect } from 'react';
+import { View,  StyleSheet, Text, ImageBackground } from 'react-native';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 import TimeSelector from '../components/timeSelector';
+import { actuatedNormalize } from '../components/actuatedNormalize';
 import data from '../assets/data.json';
 import { useSelector } from 'react-redux';
 
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 10,
     textAlign: 'justify',
-    fontSize: 24,
+    fontSize: actuatedNormalize(22),
     fontFamily: 'IMFellDWPica',
   },
 });

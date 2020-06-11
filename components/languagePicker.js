@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TouchableWithoutFeedback, TouchableHighlight, StyleSheet, Modal, View, Text } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; 
-import { MaterialIcons } from '@expo/vector-icons'; 
 import {Picker} from '@react-native-community/picker';
 import { setDisplayLanguage } from '../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,8 +35,6 @@ export default function LanguagePicker() {
         </Modal>
 
         <TouchableHighlight style={styles.questionIcon}  onPress={() => {setModalVisible(true)}}>
-          {/* <FontAwesome name="language" size={36} color="grey" /> */}
-          {/* <MaterialIcons name="language" size={36} color="grey" /> */}
           <FontAwesome name="question-circle-o" size={36} color="#888" />
         </TouchableHighlight>
       </View>

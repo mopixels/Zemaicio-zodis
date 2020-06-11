@@ -10,7 +10,7 @@
     "notification": {
       "icon": "./img/icon.png"
     },
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./img/icon.png",
     "splash": {
@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "com.mopixels.zemaiciozodis",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": [
         "VIBRATE",
         "NOTIFICATIONS"

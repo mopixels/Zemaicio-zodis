@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Platform, Text, AsyncStorage, Switch, StyleSheet, ToastAndroid } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Btn from './btn';
+import { actuatedNormalize } from './actuatedNormalize';
 import { useSelector } from 'react-redux';
 
 
@@ -136,7 +137,7 @@ export default function TimeSelector(props) {
           value={new Date()}
           mode={'time'}
           is24Hour={true}
-          display={"spinner"}
+          display='spinner'
           onChange={handleDateChange}
           onCancel={handleCancel}
         />
@@ -170,10 +171,10 @@ const styles = StyleSheet.create({
   },
   rowText: {
     fontFamily:'Merriweather-Regular',
-    fontSize: 20,
+    fontSize: actuatedNormalize(18),
   },
   time: {
-    fontSize: 20,
+    fontSize: actuatedNormalize(18),
   },
   switch: {
     transform:[{ scaleX: 2 }, { scaleY: 2 }],
