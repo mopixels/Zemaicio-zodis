@@ -30,9 +30,9 @@
 
 ## Contact
 
-Modestas Rimkus - [@linkedin](https://www.linkedin.com/in/modestas-rimkus/) - mr.modestasrimkus@gmail.com
+Project Link: [Visit on Google Play](https://play.google.com/store/apps/details?id=com.mopixels.zemaiciozodis)
 
-Project Link: [https://modestasrimkus.netlify.app](https://modestasrimkus.netlify.app)
+Modestas Rimkus - [contact me @linkedin](https://www.linkedin.com/in/modestas-rimkus/) - mr.modestasrimkus@gmail.com
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
