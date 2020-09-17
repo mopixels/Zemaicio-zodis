@@ -17,9 +17,10 @@
 </p>
 
 <!-- ABOUT THE PROJECT -->
-  <a align="center" href="https://play.google.com/store/apps/details?id=com.mopixels.zemaiciozodis">
-    <img src="https://lh3.googleusercontent.com/2wREGoqSPlq-iVPUmu6dJsHp5Sf3jV58mNox2HpkRp7bwqMpTquGi6Qwq6eijG--kqQ=w720-h310-rw" alt="Logo" width="80" height="80">
-  </a>
+
+[![Product Name Screen Shot][product-screenshot1]]()
+[![Product Name Screen Shot][product-screenshot2]]()
+[![Product Name Screen Shot][product-screenshot3]]()
 
 ### Built With
 
@@ -38,4 +39,6 @@ Modestas Rimkus - [contact me @linkedin](https://www.linkedin.com/in/modestas-ri
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[product-screenshot]:
+[product-screenshot1]: https://lh3.googleusercontent.com/2wREGoqSPlq-iVPUmu6dJsHp5Sf3jV58mNox2HpkRp7bwqMpTquGi6Qwq6eijG--kqQ=w720-h310-rw
+[product-screenshot2]: https://lh3.googleusercontent.com/PgYHMPSOFrwdIpi_3Q9weIdc2gU96giKXZyXYJbb2bgww1pel0i04D01zzuQRN0r4w=w720-h310-rw
+[product-screenshot3]: https://lh3.googleusercontent.com/yMrwMMQ94QOLf_r-xbbIvd3tKBUJCYvFiH4Jy4SzAGlEsIXPgYSsrbEknSgMjj3PQec=w720-h310-rw
