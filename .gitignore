@@ -1,0 +1,8 @@
+# Dependency directories
+.expo-shared/
+.expo/
+.vscode/
+babel.config.js
+cache/
+node_modules/
+web-build/
