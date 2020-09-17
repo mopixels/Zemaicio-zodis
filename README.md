@@ -17,8 +17,9 @@
 </p>
 
 <!-- ABOUT THE PROJECT -->
-
-[![Product Name Screen Shot][product-screenshot]](https://play.google.com/store/apps/details?id=com.mopixels.zemaiciozodis)
+  <a align="center" href="https://play.google.com/store/apps/details?id=com.mopixels.zemaiciozodis">
+    <img src="https://lh3.googleusercontent.com/2wREGoqSPlq-iVPUmu6dJsHp5Sf3jV58mNox2HpkRp7bwqMpTquGi6Qwq6eijG--kqQ=w720-h310-rw" alt="Logo" width="80" height="80">
+  </a>
 
 ### Built With
 
@@ -37,4 +38,4 @@ Modestas Rimkus - [contact me @linkedin](https://www.linkedin.com/in/modestas-ri
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[product-screenshot]: https://lh3.googleusercontent.com/2wREGoqSPlq-iVPUmu6dJsHp5Sf3jV58mNox2HpkRp7bwqMpTquGi6Qwq6eijG--kqQ=w720-h310-rw
+[product-screenshot]:
