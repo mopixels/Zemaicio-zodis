@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { TouchableWithoutFeedback, TouchableHighlight, StyleSheet, Modal, View, Text } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; 
-import {Picker} from '@react-native-community/picker';
+import {Picker} from '@react-native-picker/picker';
 import { setDisplayLanguage } from '../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../App';
 
 export default function LanguagePicker() {
 
   const [modalVisible, setModalVisible] = useState(false);
 
   const dispatch = useDispatch();
-  const displayLanguage = useSelector( state => state.displayLanguage );
+  const displayLanguage = useSelector( (state: RootState) => state.displayLanguage );
   const language = displayLanguage.language;
 
     return (

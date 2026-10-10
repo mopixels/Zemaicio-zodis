@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Clipboard, Vibration, ToastAndroid, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Vibration, ToastAndroid, Dimensions, FlatList } from 'react-native';
 import allData from '../assets/data.json';
-import { FlatList } from 'react-native-gesture-handler';
+import * as Clipboard from 'expo-clipboard';
 import { actuatedNormalize } from '../components/actuatedNormalize';
 import { useSelector } from 'react-redux';
+import type { RootState } from '../App';
+import type { Word } from '../types';
+import removeAccents from 'remove-accents';
 
 
 export default function Dictionary() {
 
-  const [data, setData] = useState([]); 
+  const [data, setData] = useState<Word[]>([]); 
 
-  const searchField = useSelector( state => state.searchDictionary);
+  const searchField = useSelector( (state: RootState) => state.searchDictionary);
   const searchInput = searchField.searchField.toString().toLowerCase();
 
-  const isZmt = useSelector( state => state.inputLanguage);
+  const isZmt = useSelector( (state: RootState) => state.inputLanguage);
   const inputLanguage = isZmt.isZmt;
 
-  const removeAccents = require('remove-accents');
-
   //FILTERING DATA STATE (JSON FILE)
-  let filteredWord = new Array();
+  let filteredWord: Word[] = [];
     // CHEKING WHICH LANGUAGE IS SELECTED IN CustomSwitch.js
     if (inputLanguage) { 
       filteredWord = data.filter(word => 
@@ -31,18 +32,18 @@ export default function Dictionary() {
       );
     }
 
-  const writeToClipboard = (text) => {
+  const writeToClipboard = (text: string) => {
     Vibration.vibrate(10);
-    Clipboard.setString(text);
+    Clipboard.setStringAsync(text);
     ToastAndroid.show(`Nukopijuota : ${text}`, ToastAndroid.SHORT);
   };
 
-  const capitalizeFirstLetter = (str) => {
+  const capitalizeFirstLetter = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
   useEffect(() => {
-    setData(allData);
+    setData(allData as Word[]);
   }, [] )
 
   return (

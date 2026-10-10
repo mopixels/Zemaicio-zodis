@@ -1,23 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import {View, Platform, Text, AsyncStorage, Switch, StyleSheet, ToastAndroid } from 'react-native';
+import {View, Platform, Text, Switch, StyleSheet, ToastAndroid } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Btn from './btn';
 import { actuatedNormalize } from './actuatedNormalize';
 import { useSelector } from 'react-redux';
+import type { RootState } from '../App';
+import type { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
 
-export default function TimeSelector(props) {
+interface TimeSelectorProps {
+  onSubmit: (time: number | Date) => void;
+  cancelNotifications: () => void;
+}
 
-  const [date, setDate] = useState();
+export default function TimeSelector(props: TimeSelectorProps) {
+
+  const [date, setDate] = useState<Date>();
   const [show, setShow] = useState(false);
   const [retrievedTime, setRetrievedTime] = useState('');
   const [switchValue, setSwitchValue] = useState(false);
 
-  const displayLanguage = useSelector( state => state.displayLanguage );
+  const displayLanguage = useSelector( (state: RootState) => state.displayLanguage );
   const language = displayLanguage.language
 
   // HANDLING DATA AFTER CLOSING DateTimePicker
-  const handleDateChange = (event, selectedDate) => {
+  const handleDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     // DEFINING WHAT HAPPENS WHEN TIME IS CHANGED AND CONFIRMED
     if(selectedDate !== undefined) {
       const currentDate = selectedDate || date;
@@ -37,14 +45,9 @@ export default function TimeSelector(props) {
     }
   }
 
-  //HIDING DateTimePicker WHEN PRESSED CANCEL
-  const handleCancel = () => {
-    setShow(false)
-  }
-
-  const toggleSwitch = (v) => {
+  const toggleSwitch = (v: boolean) => {
     // ON FIRST VISIT IF THRE'S NO SELECTED TIME, SUBSCRIPTION IS NOT ALLOWED 
-    if(retrievedTime == '') {
+    if(retrievedTime == '' || !date) {
       ToastAndroid.show( `${ language=='lt' ? 'Prašom pasirinkti laiką' : 'Rēk pasirinkte laika' }`, ToastAndroid.SHORT);
     } else {
       setSwitchValue(v);
@@ -66,7 +69,7 @@ export default function TimeSelector(props) {
   }
 
   // STORING USER SELECTED TIME IN DEVICE MEMORY
-  const _storeTime = async(currentDate) => {
+  const _storeTime = async(currentDate: Date) => {
     const formatedTime = currentDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     try {
       await AsyncStorage.setItem('Notification time', JSON.stringify(currentDate));
@@ -77,7 +80,7 @@ export default function TimeSelector(props) {
   };
   
   // STORING SWITCH VALUE IN DEVICE MEMORY
-  const _storeSwitchValue = async(v) => {
+  const _storeSwitchValue = async(v: boolean) => {
     try {
       await AsyncStorage.setItem('Switch value', JSON.stringify(v));
     } catch (error) {
@@ -94,8 +97,8 @@ export default function TimeSelector(props) {
 
     if (storedDisplayTime !== null) {
       setRetrievedTime(JSON.parse(storedDisplayTime));
-      setSwitchValue(JSON.parse(storedSwitchValue));
-      setDate(new Date(JSON.parse(storedNotificationTime)));
+      setSwitchValue(JSON.parse(storedSwitchValue ?? 'null'));
+      setDate(new Date(JSON.parse(storedNotificationTime ?? 'null')));
     } } catch (error) {
       console.log(error)
     }
@@ -139,7 +142,6 @@ export default function TimeSelector(props) {
           is24Hour={true}
           display='spinner'
           onChange={handleDateChange}
-          onCancel={handleCancel}
         />
       )}
     </View>

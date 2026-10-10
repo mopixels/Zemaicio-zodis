@@ -17,6 +17,7 @@ export default function CustomSwitch() {
             Animated.spring(moveAnimation, {
                 toValue: { x: 0, y: 0 },
                 tension: 20,
+                useNativeDriver: false,
             }).start()
             setBackgroundImage(require('../img/lt_flag.jpg'))
             setToggleValue(true)
@@ -25,6 +26,7 @@ export default function CustomSwitch() {
             Animated.spring(moveAnimation, {
                 toValue: { x: 35, y: 0 },
                 tension: 20,
+                useNativeDriver: false,
             }).start()
             setBackgroundImage(require('../img/zmt_flag.png'))
             setToggleValue(false)
@@ -47,7 +49,7 @@ export default function CustomSwitch() {
                     style={{ width: '100%', height: '100%', justifyContent: 'center', borderRadius: 80 }}
                     imageStyle={{ borderRadius: 80 }}>
                     <Animated.View style={[styles.tennisBall, moveAnimation.getLayout()]}>
-                        <TouchableWithoutFeedback style={styles.button} onPressIn={_moveBall }>
+                        <TouchableWithoutFeedback onPressIn={_moveBall }>
                             <Text style={StyleSheet.absoluteFill}></Text>
                         </TouchableWithoutFeedback>
                     </Animated.View>

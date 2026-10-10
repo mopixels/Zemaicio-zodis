@@ -1,12 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { actuatedNormalize } from './actuatedNormalize';
 
-const Btn = props => {
+interface BtnProps {
+    text: string;
+    onPress: () => void;
+    btnStyle?: StyleProp<ViewStyle>;
+    textStyle?: StyleProp<TextStyle>;
+}
+
+const Btn = (props: BtnProps) => {
     return (
         <TouchableOpacity onPress={props.onPress}>
-            <View style={ {...styles.btn, ...props.btnStyle} }>
-                <Text style={{...styles.btnText, ...props.textStyle}}>
+            <View style={ [styles.btn, props.btnStyle] }>
+                <Text style={ [styles.btnText, props.textStyle] }>
                     { props.text }
                 </Text>
             </View>

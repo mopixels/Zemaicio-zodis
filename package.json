@@ -5,33 +5,37 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "prebuild": "expo prebuild"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "^2.2.2",
-    "@react-native-community/masked-view": "0.1.6",
-    "@react-native-community/picker": "^1.6.1",
-    "@react-navigation/native": "^5.2.4",
-    "@react-navigation/stack": "^5.2.19",
-    "@use-expo/font": "^2.0.0",
-    "expo": "^37.0.0",
-    "react": "~16.9.0",
-    "react-dom": "~16.9.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
-    "react-native-elements": "^2.0.0",
-    "react-native-gesture-handler": "~1.6.0",
-    "react-native-gradient-buttons": "^2.0.1",
-    "react-native-reanimated": "~1.7.0",
-    "react-native-safe-area-context": "0.7.3",
-    "react-native-screens": "~2.2.0",
-    "react-native-web": "~0.11.7",
-    "react-redux": "^7.2.0",
-    "redux": "^4.0.5",
-    "remove-accents": "^0.4.2"
+    "@expo/metro-runtime": "~57.0.16",
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-native-community/datetimepicker": "9.1.0",
+    "@react-native-picker/picker": "2.11.4",
+    "@react-navigation/native": "^7.5.0",
+    "@react-navigation/stack": "^7.12.0",
+    "@types/react": "~19.2.4",
+    "expo": "~57.0.27",
+    "expo-clipboard": "~57.0.2",
+    "expo-device": "~57.0.2",
+    "expo-font": "~57.0.4",
+    "expo-notifications": "~57.0.22",
+    "expo-splash-screen": "~57.0.9",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-gesture-handler": "~2.32.0",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-web": "^0.21.2",
+    "react-redux": "^9.3.0",
+    "redux": "^5.0.1",
+    "remove-accents": "^0.5.0",
+    "typescript": "~6.0.3"
   },
+  "private": true,
   "devDependencies": {
-    "@babel/core": "^7.8.6",
-    "babel-preset-expo": "~8.1.0"
-  },
-  "private": true
+    "babel-preset-expo": "~57.0.0"
+  }
 }

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, TouchableOpacity, Text, Clipboard, Vibration, ToastAndroid } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, Vibration, ToastAndroid } from 'react-native';
 import data from '../assets/data.json';
+import * as Clipboard from 'expo-clipboard';
 import { actuatedNormalize } from './actuatedNormalize';
+import type { Word } from '../types';
+
+const words: Word[] = data;
 
 export default function Card() {
 
@@ -10,15 +14,15 @@ export default function Card() {
     
     const loadRandomWord = () => { 
         let randomNumber = Math.floor(Math.random() * 2818);
-        let randomTitle = data[randomNumber].title;
-        let randomMeaning = data[randomNumber].meaning;
+        let randomTitle = words[randomNumber].title;
+        let randomMeaning = words[randomNumber].meaning;
         setTitle(randomTitle);
         setMeaning(randomMeaning);
     }
 
-    const writeToClipboard = (text) => {
+    const writeToClipboard = (text: string) => {
         Vibration.vibrate(10);
-        Clipboard.setString(text);
+        Clipboard.setStringAsync(text);
         ToastAndroid.show(`Nukopijuota: ${text}`, ToastAndroid.SHORT);
     };
 

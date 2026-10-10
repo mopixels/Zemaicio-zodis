@@ -8,10 +8,11 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 import { useSelector } from 'react-redux';
+import type { RootState } from '../App';
 import { actuatedNormalize } from '../components/actuatedNormalize';
 
 export default function About() {
-	const displayLanguage = useSelector((state) => state.displayLanguage);
+	const displayLanguage = useSelector((state: RootState) => state.displayLanguage);
 	const language = displayLanguage.language;
 
 	return (

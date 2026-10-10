@@ -1,72 +1,64 @@
 import React, { useEffect } from 'react';
-import { View,  StyleSheet, Text, ImageBackground } from 'react-native';
-import { Notifications } from 'expo';
-import * as Permissions from 'expo-permissions';
-import Constants from 'expo-constants';
+import { View,  StyleSheet, Text, ImageBackground, Platform } from 'react-native';
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
 import TimeSelector from '../components/timeSelector';
 import { actuatedNormalize } from '../components/actuatedNormalize';
 import data from '../assets/data.json';
 import { useSelector } from 'react-redux';
+import type { RootState } from '../App';
+import type { Word } from '../types';
+
+const words: Word[] = data;
 
 export default function Subcribe() {
 
-  const displayLanguage = useSelector( state => state.displayLanguage );
+  const displayLanguage = useSelector( (state: RootState) => state.displayLanguage );
   const language = displayLanguage.language
 
   let randomNumber = Math.floor(Math.random() * 2818);
-  const randomTitle =  data[randomNumber].title 
-  const randomMeaning = data[randomNumber].meaning
+  const randomTitle =  words[randomNumber].title 
+  const randomMeaning = words[randomNumber].meaning
 
   const localNotification =  { 
     title: `${ language == 'lt' ? 'Dienos žodis:' : 'Deinos žuodis:' }`,
     body: `${randomTitle} - ${randomMeaning}`,
-    android: {
-      channelId: 'default',
-      sound: true,
-      // //icon (optional) (string) — URL of icon to display in notification drawer.
-      // //color (optional) (string) — color of the notification icon in notification drawer.
-      // priority: 'high', // (optional) (min | low | high | max) — android may present notifications according to the priority, for example a high priority notification will likely to be shown as a heads-up notification.
-      // vibrate: true // (optional) (boolean or array) — if true, vibrate the device. An array can be supplied to specify the vibration pattern, e.g. - [ 0, 500 ].
-    }
+    sound: true,
    };
 
   // THIS CONST IS ACTIVATED WHEN TIME IS SELECTED IN TimeSelector
-  const onSubmit = (time) => {
-    const schedulingOptions = {
-      time: time,
-      repeat: 'day',
-    };
-    Notifications.scheduleLocalNotificationAsync(
-      localNotification,
-      schedulingOptions,
-    );
+  const onSubmit = (time: number | Date) => {
+    const date = new Date(time);
+    Notifications.scheduleNotificationAsync({
+      content: localNotification,
+      trigger: {
+        type: Notifications.SchedulableTriggerInputTypes.DAILY,
+        channelId: 'default',
+        hour: date.getHours(),
+        minute: date.getMinutes(),
+      },
+    });
   };
 
   const cancelNotifications = () => {
     Notifications.cancelAllScheduledNotificationsAsync();
   }
 
-  const handleNotification = () => {
-    console.log('')
-  };
-
   const askNotification = async () => {
     if (Platform.OS === 'android') {
-      Notifications.createChannelAndroidAsync('default', {
+      await Notifications.setNotificationChannelAsync('default', {
         name: 'default',
-        priority: 'high',
-        vibrate: [0, 250, 250, 250],
+        importance: Notifications.AndroidImportance.HIGH,
+        vibrationPattern: [0, 250, 250, 250],
       });
     }
-    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-    if (Constants.isDevice && status === 'granted')
+    const { status } = await Notifications.requestPermissionsAsync();
+    if (Device.isDevice && status === 'granted')
       console.log('Notification permissions granted.');
   };
 
   useEffect(() => {
     askNotification();
-    const listener = Notifications.addListener(handleNotification);
-    return () => listener.remove();
   }, []);
 
   return(
@@ -76,7 +68,7 @@ export default function Subcribe() {
           { language == 'lt' 
           ? <Text style={styles.text}>Aktyvavus prenumeratą kiekvieną dieną siunčiamas pranešimas su žemaitišku žodžiu, bei jo vertimu</Text> 
           : <Text style={styles.text}>Aktīvavus prenumerata kuožna dėina gausė pranešėma so žemaitėšku žuodiu ė anuo pargoldīmu</Text> }
-          <TimeSelector style={styles.timeSelector} onSubmit={onSubmit} cancelNotifications={cancelNotifications} />
+          <TimeSelector onSubmit={onSubmit} cancelNotifications={cancelNotifications} />
         </View>
       </View>
     </ImageBackground>

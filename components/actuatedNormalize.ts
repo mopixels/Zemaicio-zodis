@@ -7,7 +7,7 @@ const {
 
     const scale = SCREEN_HEIGHT / 600;
 
-export function actuatedNormalize(size) {
+export function actuatedNormalize(size: number) {
   const newSize = size * scale 
    if (Platform.OS === 'ios') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize))
