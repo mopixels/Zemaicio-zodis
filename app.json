@@ -5,7 +5,7 @@
     "platforms": [
       "android"
     ],
-    "version": "1.0.4",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./img/icon.png",
     "updates": {
@@ -19,7 +19,7 @@
     },
     "android": {
       "package": "com.mopixels.zemaiciozodis",
-      "versionCode": 4,
+      "versionCode": 5,
       "permissions": [
         "VIBRATE",
         "NOTIFICATIONS"
@@ -43,6 +43,12 @@
           "backgroundColor": "#ffffff"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1ccdbdc8-ba40-47db-8d38-e3f191154df6"
+      }
+    },
+    "owner": "mopixels"
   }
 }
