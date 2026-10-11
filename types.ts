@@ -1,5 +1,3 @@
-import type { StackScreenProps } from '@react-navigation/stack';
-
 export type Language = 'zmt' | 'lt';
 
 export interface Word {
@@ -8,11 +6,8 @@ export interface Word {
   meaning: string;
 }
 
-export type RootStackParamList = {
-  Home: undefined;
-  Prenumerata: undefined;
-  'Žemaitėšks žuodīnielis': undefined;
-  Apie: undefined;
+export type RootTabParamList = {
+  Word: undefined;
+  Dictionary: undefined;
+  Settings: undefined;
 };
-
-export type RootStackScreenProps<T extends keyof RootStackParamList> = StackScreenProps<RootStackParamList, T>;

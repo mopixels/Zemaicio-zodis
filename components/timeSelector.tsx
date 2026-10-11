@@ -1,90 +1,82 @@
-import React, {useState, useEffect} from 'react';
-import {View, Platform, Text, Switch, StyleSheet, ToastAndroid } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Pressable, StyleSheet, ToastAndroid } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import Btn from './btn';
-import { actuatedNormalize } from './actuatedNormalize';
 import { useSelector } from 'react-redux';
+import PaperSwitch from './paperSwitch';
+import { askNotificationPermission, scheduleDailyWord, cancelNotifications } from '../notifications';
+import { colors, fonts } from '../theme';
 import type { RootState } from '../App';
 import type { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
+const defaultTime = () => {
+  const date = new Date();
+  date.setHours(8, 0, 0, 0);
+  return date;
+};
 
-interface TimeSelectorProps {
-  onSubmit: (time: number | Date) => void;
-  cancelNotifications: () => void;
-}
+const pad = (n: number) => n.toString().padStart(2, '0');
+const formatTime = (date: Date) => `${pad(date.getHours())}:${pad(date.getMinutes())}`;
 
-export default function TimeSelector(props: TimeSelectorProps) {
+// The "Prenumerata" card in Settings: daily word notification on/off and its time.
+export default function TimeSelector() {
 
-  const [date, setDate] = useState<Date>();
+  const [time, setTime] = useState<Date>(defaultTime);
   const [show, setShow] = useState(false);
-  const [retrievedTime, setRetrievedTime] = useState('');
   const [switchValue, setSwitchValue] = useState(false);
 
-  const displayLanguage = useSelector( (state: RootState) => state.displayLanguage );
-  const language = displayLanguage.language
+  const language = useSelector((state: RootState) => state.displayLanguage.language);
+  const lt = language == 'lt';
 
-  // HANDLING DATA AFTER CLOSING DateTimePicker
+  const subscribe = async (date: Date) => {
+    await askNotificationPermission();
+    await cancelNotifications();
+    scheduleDailyWord(date, language);
+  };
+
+  // HANDLING DATA AFTER CLOSING DateTimePicker. IF USER PRESSES CANCEL selectedDate IS UNDEFINED
   const handleDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
-    // DEFINING WHAT HAPPENS WHEN TIME IS CHANGED AND CONFIRMED
-    if(selectedDate !== undefined) {
-      const currentDate = selectedDate || date;
-      setShow(Platform.OS === 'ios');
-      setDate(currentDate);
-      // CALLING A FUNCTION TO STORE SELECTED TIME
-      _storeTime(currentDate);
-      setRetrievedTime(currentDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}))
-
-      if (switchValue) {
-        props.cancelNotifications();
-        toggleSwitch(false)
-      }
-    // IF USER PRESS CANCEL IN DateTimePicker selectedDate == undefined AND DateTimePicker IS CLOSED
-    } else {
-      setShow(false)
-    }
-  }
+    setShow(false);
+    if (event.type !== 'set' || !selectedDate) return;
+    setTime(selectedDate);
+    _storeTime(selectedDate);
+    // CHANGING THE TIME WHILE SUBSCRIBED RESCHEDULES THE NOTIFICATION
+    if (switchValue) subscribe(selectedDate);
+  };
 
   const toggleSwitch = (v: boolean) => {
-    // ON FIRST VISIT IF THRE'S NO SELECTED TIME, SUBSCRIPTION IS NOT ALLOWED 
-    if(retrievedTime == '' || !date) {
-      ToastAndroid.show( `${ language=='lt' ? 'Prašom pasirinkti laiką' : 'Rēk pasirinkte laika' }`, ToastAndroid.SHORT);
-    } else {
-      setSwitchValue(v);
-      _storeSwitchValue(v);
-      if (v) {
-        if(date.getTime() < Date.now()) {
-          const dayMore = date.setDate(date.getDate() + 1)
-          props.onSubmit(dayMore);
-          ToastAndroid.show( `${ language=='lt' ? 'Prenumerata užsakyta' : 'Prenumerata užsakīta' }`, ToastAndroid.SHORT);
-        } else {
-          props.onSubmit(date);
-          ToastAndroid.show( `${ language=='lt' ? 'Prenumerata užsakyta' : 'Prenumerata užsakīta' }`, ToastAndroid.SHORT);
-        }
-      } else {
-        props.cancelNotifications();
-        ToastAndroid.show( 'Prenumerata išjungta', ToastAndroid.SHORT);
-      }
+    if (isNaN(time.getTime())) {
+      ToastAndroid.show(lt ? 'Prašom pasirinkti laiką' : 'Rēk pasirinkte laika', ToastAndroid.SHORT);
+      return;
     }
-  }
-
-  // STORING USER SELECTED TIME IN DEVICE MEMORY
-  const _storeTime = async(currentDate: Date) => {
-    const formatedTime = currentDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    try {
-      await AsyncStorage.setItem('Notification time', JSON.stringify(currentDate));
-      await AsyncStorage.setItem('Display time', JSON.stringify(formatedTime));
-    } catch (error) {
-      console.log(error)
+    setSwitchValue(v);
+    _storeSwitchValue(v);
+    if (v) {
+      _storeTime(time);
+      subscribe(time);
+      ToastAndroid.show(lt ? 'Prenumerata užsakyta' : 'Prenumerata užsakīta', ToastAndroid.SHORT);
+    } else {
+      cancelNotifications();
+      ToastAndroid.show('Prenumerata išjungta', ToastAndroid.SHORT);
     }
   };
-  
+
+  // STORING USER SELECTED TIME IN DEVICE MEMORY
+  const _storeTime = async (date: Date) => {
+    try {
+      await AsyncStorage.setItem('Notification time', JSON.stringify(date));
+      await AsyncStorage.setItem('Display time', JSON.stringify(formatTime(date)));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // STORING SWITCH VALUE IN DEVICE MEMORY
-  const _storeSwitchValue = async(v: boolean) => {
+  const _storeSwitchValue = async (v: boolean) => {
     try {
       await AsyncStorage.setItem('Switch value', JSON.stringify(v));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -92,106 +84,103 @@ export default function TimeSelector(props: TimeSelectorProps) {
   const _retrieveData = async () => {
     try {
       const storedNotificationTime = await AsyncStorage.getItem('Notification time');
-      const storedDisplayTime = await AsyncStorage.getItem('Display time');
       const storedSwitchValue = await AsyncStorage.getItem('Switch value');
-
-    if (storedDisplayTime !== null) {
-      setRetrievedTime(JSON.parse(storedDisplayTime));
-      setSwitchValue(JSON.parse(storedSwitchValue ?? 'null'));
-      setDate(new Date(JSON.parse(storedNotificationTime ?? 'null')));
-    } } catch (error) {
-      console.log(error)
+      if (storedNotificationTime !== null) setTime(new Date(JSON.parse(storedNotificationTime)));
+      if (storedSwitchValue !== null) setSwitchValue(JSON.parse(storedSwitchValue) === true);
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const showTimepicker = () => {
-    setShow(true)
-  };
-
-  useEffect( () => {
+  useEffect(() => {
     _retrieveData();
   }, []);
 
-
   return (
-    <View >
-      <View >
-        <View style={styles.container}>
+    <View style={styles.card}>
+      <View style={styles.switchRow}>
+        <Text style={styles.rowText}>Prenumerata</Text>
+        <PaperSwitch value={switchValue} onValueChange={toggleSwitch} accessibilityLabel="Prenumerata" />
+      </View>
 
-          <View style={styles.switchRow}>
-            <Text style={styles.rowText}>Prenumerata</Text>
-            <Switch style={styles.switch} value={switchValue} onValueChange={(v) => {toggleSwitch(v)}}/>
-          </View>
+      <Text style={styles.description}>
+        {lt
+          ? 'Aktyvavus prenumeratą kiekvieną dieną siunčiamas pranešimas su žemaitišku žodžiu, bei jo vertimu'
+          : 'Aktīvavus prenumerata kuožna dėina gausė pranešėma so žemaitėšku žuodiu ė anuo pargoldīmu'}
+      </Text>
 
-          <View style={styles.timeRow}>
-            { language == 'lt'
-            ? <Text style={styles.rowText}>Nustatytas laikas</Text>
-            : <Text style={styles.rowText}>Nustatīts laiks</Text> }
-              <Text style={styles.time}>{retrievedTime.slice(0, -3)}</Text>
-          </View>
-
-        </View>
-        <Btn text= { language=='lt' ? 'Pasirinkti laiką' : 'Rinkteis laika' } btnStyle={styles.button} textStyle={styles.buttonTxt} onPress={showTimepicker} />
+      <View style={styles.timeRow}>
+        <Text style={styles.rowText}>{lt ? 'Nustatytas laikas' : 'Nustatīts laiks'}</Text>
+        <Pressable
+          onPress={() => setShow(true)}
+          style={({ pressed }) => [styles.timeChip, pressed && styles.timeChipPressed]}
+          accessibilityRole="button"
+        >
+          <Text style={styles.timeText}>{isNaN(time.getTime()) ? '--:--' : formatTime(time)}</Text>
+        </Pressable>
       </View>
 
       {show && (
         <DateTimePicker
-          testID="dateTimePicker"
-          value={new Date()}
-          mode={'time'}
+          value={isNaN(time.getTime()) ? defaultTime() : time}
+          mode="time"
           is24Hour={true}
-          display='spinner'
           onChange={handleDateChange}
         />
       )}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 7,
+  card: {
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: colors.border14,
+    backgroundColor: colors.card,
   },
-  switchRow:{
+  switchRow: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderColor: '#bebebe',
-    paddingTop: 30,
-    paddingBottom: 7,
-    paddingLeft: 10,
-  },
-  timeRow:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderColor: '#bebebe',
-    paddingBottom: 7,
-    paddingTop: 7,
-    paddingLeft: 10,
-    paddingRight: 20,
+    gap: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
   },
   rowText: {
-    fontFamily:'Merriweather-Regular',
-    fontSize: actuatedNormalize(18),
+    fontFamily: fonts.bodyMedium,
+    fontSize: 16,
+    color: colors.ink,
   },
-  time: {
-    fontSize: actuatedNormalize(18),
+  description: {
+    paddingHorizontal: 16,
+    paddingBottom: 14,
+    fontFamily: fonts.body,
+    fontSize: 14,
+    lineHeight: 14 * 1.5,
+    color: colors.muted,
   },
-  switch: {
-    transform:[{ scaleX: 2 }, { scaleY: 2 }],
-    marginRight: 25,
+  timeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderTopWidth: 1,
+    borderTopColor: colors.border10,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
   },
-  button: {
-    borderColor: '#5a748d',
-    marginHorizontal: 20,
-    marginTop: 20,
-    borderRadius: 50,
-    backgroundColor: '#5a748d',
-    opacity: .85,
-    elevation: 5,
+  timeChip: {
+    backgroundColor: colors.accentTint08,
+    borderRadius: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
   },
-  buttonTxt: {
-    color: '#d9d9d9',
+  timeChipPressed: {
+    backgroundColor: colors.accentTint05,
+  },
+  timeText: {
+    fontFamily: fonts.uiSemiBold,
+    fontSize: 16,
+    color: colors.accent,
   },
 });

@@ -1,130 +1,237 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Vibration, ToastAndroid, Dimensions, FlatList } from 'react-native';
-import allData from '../assets/data.json';
-import * as Clipboard from 'expo-clipboard';
-import { actuatedNormalize } from '../components/actuatedNormalize';
-import { useSelector } from 'react-redux';
+import React, { useMemo } from 'react';
+import { StyleSheet, Text, View, TextInput, Pressable, FlatList } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import PaperBackground from '../components/paperBackground';
+import Flag from '../components/flag';
+import { setSearchField, setInputLanguage } from '../actions/actions';
+import { colors, fonts } from '../theme';
+import { words, wordText, copyToClipboard, stripAccents, capitalize } from '../utils';
 import type { RootState } from '../App';
 import type { Word } from '../types';
-import removeAccents from 'remove-accents';
 
+interface Entry {
+  word: Word;
+  head: string;  // text in the search language, shown as the headword
+  sub: string;   // the translation
+  key: string;   // head without accents, used for matching
+  pos: number[]; // index in head of each character of key
+}
+
+interface Row extends Entry {
+  match: number; // index of the query in head, or -1
+}
+
+const buildEntries = (isZmt: boolean): Entry[] =>
+  words.map(word => {
+    const head = (isZmt ? word.title : word.meaning).normalize('NFC');
+    const sub = (isZmt ? word.meaning : word.title).normalize('NFC');
+    // A few headwords keep combining marks after NFC, so key can be shorter than head.
+    let key = '';
+    const pos: number[] = [];
+    for (let i = 0; i < head.length; i++) {
+      const stripped = stripAccents(head[i]);
+      key += stripped;
+      for (let j = 0; j < stripped.length; j++) pos.push(i);
+    }
+    return { word, head, sub, key, pos };
+  });
+
+const zmtEntries = buildEntries(true);
+const ltEntries = buildEntries(false).sort((a, b) => a.head.localeCompare(b.head, 'lt'));
 
 export default function Dictionary() {
 
-  const [data, setData] = useState<Word[]>([]); 
+  const dispatch = useDispatch();
+  const language = useSelector((state: RootState) => state.displayLanguage.language);
+  const searchField = useSelector((state: RootState) => state.searchDictionary.searchField);
+  const isZmt = useSelector((state: RootState) => state.inputLanguage.isZmt);
+  const lt = language == 'lt';
 
-  const searchField = useSelector( (state: RootState) => state.searchDictionary);
-  const searchInput = searchField.searchField.toString().toLowerCase();
+  const query = stripAccents(searchField.trim());
 
-  const isZmt = useSelector( (state: RootState) => state.inputLanguage);
-  const inputLanguage = isZmt.isZmt;
+  const rows = useMemo<Row[]>(() => {
+    const entries = isZmt ? zmtEntries : ltEntries;
+    if (!query) return entries.map(e => ({ ...e, match: -1 }));
+    return entries
+      .map(e => ({ ...e, match: e.key.indexOf(query) }))
+      .filter(r => r.match >= 0)
+      .sort((a, b) =>
+        (a.match === 0 ? 0 : 1) - (b.match === 0 ? 0 : 1) || a.head.localeCompare(b.head, 'lt'));
+  }, [query, isZmt]);
 
-  //FILTERING DATA STATE (JSON FILE)
-  let filteredWord: Word[] = [];
-    // CHEKING WHICH LANGUAGE IS SELECTED IN CustomSwitch.js
-    if (inputLanguage) { 
-      filteredWord = data.filter(word => 
-        removeAccents(word.title.toString()).toLowerCase().includes(removeAccents(searchInput))
-      );
-    } else {
-      filteredWord = data.filter(word =>
-        removeAccents(word.meaning.toString()).toLowerCase().includes(removeAccents(searchInput))
-      );
-    }
-
-  const writeToClipboard = (text: string) => {
-    Vibration.vibrate(10);
-    Clipboard.setStringAsync(text);
-    ToastAndroid.show(`Nukopijuota : ${text}`, ToastAndroid.SHORT);
+  const renderItem = ({ item }: { item: Row }) => {
+    const head = capitalize(item.head);
+    const start = item.pos[item.match];
+    const keyEnd = item.match + query.length;
+    const end = keyEnd < item.pos.length ? item.pos[keyEnd] : head.length;
+    return (
+      <Pressable
+        onPress={() => copyToClipboard(wordText(item.word))}
+        style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}
+      >
+        <Text style={styles.head}>
+          {item.match >= 0 ? (
+            <>
+              {head.slice(0, start)}
+              <Text style={styles.highlight}>{head.slice(start, end)}</Text>
+              {head.slice(end)}
+            </>
+          ) : head}
+        </Text>
+        <Text style={styles.sub}>{item.sub}</Text>
+      </Pressable>
+    );
   };
 
-  const capitalizeFirstLetter = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
-  useEffect(() => {
-    setData(allData as Word[]);
-  }, [] )
-
   return (
-    <ImageBackground source={require('../img/screen_background.jpg')} style={styles.background} > 
-      <View style={styles.container}>
-        <FlatList
-        keyExtractor={(word) => word.id}
-        data={ inputLanguage ? filteredWord : filteredWord.sort((a, b) => a.meaning.localeCompare(b.meaning)) }
-        renderItem={( {item} ) => (
-          <View style={styles.line}>
-            <TouchableOpacity  onLongPress={() => writeToClipboard(`${item.title} - ${item.meaning}`)}> 
-              { inputLanguage ? 
-                <View style={styles.grid}>
-                  <Text style={styles.title}>{capitalizeFirstLetter(item.title)}</Text>
-                  <Text style={styles.meaning}>{item.meaning}</Text>
-                </View>
-              : <View style={styles.grid}>
-                  <Text style={styles.titleInLt}>{capitalizeFirstLetter(item.meaning)}</Text>
-                  <Text style={styles.meaningInLt}>{item.title}</Text>
-                </View> }
-            </TouchableOpacity>
-          </View>
-        )} />
+    <PaperBackground>
+      <View style={styles.header}>
+        <Text style={styles.title}>{lt ? 'Žodynėlis' : 'Žuodīnielis'}</Text>
+
+        <View style={styles.searchField}>
+          <Feather name="search" size={20} color={colors.muted} />
+          <TextInput
+            style={styles.input}
+            value={searchField}
+            onChangeText={text => dispatch(setSearchField(text))}
+            placeholder={lt ? 'Paieška' : 'Ėiškuosėna'}
+            placeholderTextColor={colors.placeholder}
+            underlineColorAndroid="transparent"
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="search"
+          />
+          {searchField.length > 0 && (
+            <Pressable
+              onPress={() => dispatch(setSearchField(''))}
+              style={styles.clear}
+              accessibilityRole="button"
+              hitSlop={6}
+            >
+              <Feather name="x" size={18} color={colors.muted} />
+            </Pressable>
+          )}
+        </View>
+
+        <View style={styles.directionRow}>
+          <Pressable
+            onPress={() => dispatch(setInputLanguage(!isZmt))}
+            style={styles.direction}
+            accessibilityRole="button"
+            accessibilityLabel={isZmt ? 'Žemaitiu → lietuvių' : 'Lietuvių → žemaitiu'}
+          >
+            <Flag language={isZmt ? 'zmt' : 'lt'} />
+            <Feather name="repeat" size={16} color={colors.accent} />
+            <Flag language={isZmt ? 'lt' : 'zmt'} />
+          </Pressable>
+        </View>
       </View>
-    </ImageBackground>
+
+      <FlatList
+        style={styles.list}
+        data={rows}
+        keyExtractor={item => item.word.id}
+        renderItem={renderItem}
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="on-drag"
+        initialNumToRender={15}
+        ListEmptyComponent={<Text style={styles.empty}>{lt ? 'Nieko nerasta' : 'Nieka nier'}</Text>}
+      />
+    </PaperBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  background : {
-    height: Dimensions.get('window').height,
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'rgba(255,255,255, .85)',
-  },
-  line: {
+  header: {
+    paddingTop: 18,
+    paddingHorizontal: 20,
+    paddingBottom: 12,
+    gap: 12,
     borderBottomWidth: 1,
-  },
-  grid: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start'
+    borderBottomColor: colors.border12,
   },
   title: {
-    flex: 1,
-    width: '40%',
-    fontSize: actuatedNormalize(18),
-    fontFamily: 'Merriweather-Bold',
-    paddingVertical: 4,
-    paddingLeft: 10,
-    paddingRight: 5,
-    alignSelf: 'center',
+    fontFamily: fonts.display,
+    fontSize: 34,
+    lineHeight: 40,
+    color: colors.ink,
   },
-  meaning: {
-    width: '60%',
-    fontSize: actuatedNormalize(16),
-    fontFamily: 'Merriweather-Regular',
-    paddingVertical: 4,
-    paddingHorizontal: 5,
-    borderColor: 'grey',
-    alignSelf: 'center'
-  }, 
-  titleInLt: {
-    flex: 1,
-    width: '60%',
-    fontSize: actuatedNormalize(18),
-    fontFamily: 'Merriweather-Bold',
-    paddingVertical: 4,
-    paddingLeft: 10,
-    paddingRight: 5,
-    alignSelf: 'center',
+  searchField: {
+    height: 48,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.border25,
+    backgroundColor: colors.card,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingLeft: 14,
+    paddingRight: 6,
   },
-  meaningInLt: {
-    width: '40%',
-    textTransform: 'lowercase',
-    fontSize: actuatedNormalize(16),
-    fontFamily: 'Merriweather-Regular',
-    paddingVertical: 4,
-    paddingHorizontal: 5,
-    borderColor: 'grey',
-    alignSelf: 'center'
+  input: {
+    flex: 1,
+    minWidth: 0,
+    fontFamily: fonts.body,
+    fontSize: 17,
+    color: colors.ink,
+    paddingVertical: 0,
+  },
+  clear: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  directionRow: {
+    flexDirection: 'row',
+  },
+  direction: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    height: 36,
+    paddingHorizontal: 12,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: colors.border20,
+    backgroundColor: colors.card,
+  },
+  list: {
+    flex: 1,
+  },
+  row: {
+    paddingVertical: 11,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border09,
+    backgroundColor: colors.rowBg,
+  },
+  rowPressed: {
+    backgroundColor: colors.accentTint05,
+  },
+  head: {
+    fontFamily: fonts.bodyMedium,
+    fontSize: 19,
+    lineHeight: 19 * 1.3,
+    color: colors.ink,
+  },
+  highlight: {
+    color: colors.accent,
+    textDecorationLine: 'underline',
+  },
+  sub: {
+    fontFamily: fonts.bodyItalic,
+    fontSize: 15,
+    lineHeight: 15 * 1.35,
+    color: colors.muted,
+  },
+  empty: {
+    paddingVertical: 48,
+    paddingHorizontal: 28,
+    textAlign: 'center',
+    fontFamily: fonts.bodyItalic,
+    fontSize: 17,
+    color: colors.muted,
   },
 });

@@ -2,18 +2,18 @@ import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { searchDictionary, inputLanguage, displayLanguage } from './reducers/reducers';
-import Home from './screens/home';
-import Subscribe from './screens/subscribe';
+import Word from './screens/word';
 import Dictionary from './screens/dictionary';
-import About from './screens/about';
-import InputSearch from './components/textInput';
-import CustomSwitch from './components/customSwitch';
+import Settings from './screens/settings';
+import TabBar from './components/tabBar';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, ImageBackground } from 'react-native';
-import type { RootStackParamList } from './types';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from 'react-native';
+import { colors, fontAssets } from './theme';
+import type { RootTabParamList } from './types';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -21,18 +21,18 @@ const rootReducers = combineReducers({searchDictionary, inputLanguage, displayLa
 
 export type RootState = ReturnType<typeof rootReducers>;
 
+const store = createStore( rootReducers )
+
+const Tab = createBottomTabNavigator<RootTabParamList>();
+
+const navigationTheme = {
+  ...DefaultTheme,
+  colors: { ...DefaultTheme.colors, background: colors.paper },
+};
+
 export default function App() {
 
-  const store = createStore( rootReducers )
-
-  const Stack = createStackNavigator<RootStackParamList>();
-
-  const [fontsLoaded] = useFonts({
-    'IMFellDWPica-Italic': require('./assets/fonts/IMFellDWPica-Italic.ttf'),
-    'IMFellDWPica': require('./assets/fonts/IMFellDWPica-Regular.ttf'),
-    'Merriweather-Regular': require('./assets/fonts/Merriweather-Regular.ttf'),
-    'Merriweather-Bold': require('./assets/fonts/Merriweather-Bold.ttf'),
-  });
+  const [fontsLoaded] = useFonts(fontAssets);
 
   useEffect(() => {
     if (fontsLoaded) SplashScreen.hideAsync();
@@ -43,18 +43,16 @@ export default function App() {
   } else {
     return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} options={{ headerShown : false }}/>
-          <Stack.Screen name="Prenumerata" component={Subscribe} options={{ headerTransparent : true }} />
-          <Stack.Screen name="Žemaitėšks žuodīnielis" component={Dictionary} options={{ headerBackground: () => (
-              <ImageBackground source={require('./img/book.jpg')} style={{ ...StyleSheet.absoluteFill }}/> ), 
-              headerTitle: () => <InputSearch />, 
-              headerRight: () => <CustomSwitch />, }} />
-          <Stack.Screen name="Apie" component={About} options={{ headerBackground: () => (
-            <ImageBackground source={require('./img/book.jpg')} style={{ ...StyleSheet.absoluteFill }} /> )}} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <StatusBar barStyle="dark-content" />
+        <NavigationContainer theme={navigationTheme}>
+          <Tab.Navigator tabBar={props => <TabBar {...props} />} screenOptions={{ headerShown: false }}>
+            <Tab.Screen name="Word" component={Word} />
+            <Tab.Screen name="Dictionary" component={Dictionary} />
+            <Tab.Screen name="Settings" component={Settings} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   )}
 }
