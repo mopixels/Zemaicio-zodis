@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useDeferredValue, useMemo } from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,8 +18,10 @@ interface Entry {
   pos: number[]; // index in head of each character of key
 }
 
-interface Row extends Entry {
-  match: number; // index of the query in head, or -1
+interface Row {
+  entry: Entry;
+  match: number; // index of the query in key, or -1
+  len: number;   // length of the query that produced match
 }
 
 const buildEntries = (isZmt: boolean): Entry[] =>
@@ -37,8 +39,41 @@ const buildEntries = (isZmt: boolean): Entry[] =>
     return { word, head, sub, key, pos };
   });
 
-const zmtEntries = buildEntries(true);
-const ltEntries = buildEntries(false).sort((a, b) => a.head.localeCompare(b.head, 'lt'));
+// Both lists are sorted once here, so filtering never has to sort (localeCompare is slow).
+const collator = new Intl.Collator('lt');
+const sortedEntries = (isZmt: boolean) =>
+  buildEntries(isZmt).sort((a, b) => collator.compare(a.head, b.head));
+const zmtEntries = sortedEntries(true);
+const ltEntries = sortedEntries(false);
+const allZmtRows: Row[] = zmtEntries.map(entry => ({ entry, match: -1, len: 0 }));
+const allLtRows: Row[] = ltEntries.map(entry => ({ entry, match: -1, len: 0 }));
+
+const DictionaryRow = React.memo(function DictionaryRow({ row }: { row: Row }) {
+  const { entry, match, len } = row;
+  const head = capitalize(entry.head);
+  const start = entry.pos[match];
+  const keyEnd = match + len;
+  const end = keyEnd < entry.pos.length ? entry.pos[keyEnd] : head.length;
+  return (
+    <Pressable
+      onPress={() => copyToClipboard(wordText(entry.word))}
+      style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}
+    >
+      <Text style={styles.head}>
+        {match >= 0 ? (
+          <>
+            {head.slice(0, start)}
+            <Text style={styles.highlight}>{head.slice(start, end)}</Text>
+            {head.slice(end)}
+          </>
+        ) : head}
+      </Text>
+      <Text style={styles.sub}>{entry.sub}</Text>
+    </Pressable>
+  );
+});
+
+const renderItem = ({ item }: { item: Row }) => <DictionaryRow row={item} />;
 
 export default function Dictionary() {
 
@@ -48,41 +83,23 @@ export default function Dictionary() {
   const isZmt = useSelector((state: RootState) => state.inputLanguage.isZmt);
   const lt = language == 'lt';
 
-  const query = stripAccents(searchField.trim());
+  // Deferred so typing stays responsive while the list recomputes.
+  const query = useDeferredValue(stripAccents(searchField.trim()));
 
   const rows = useMemo<Row[]>(() => {
     const entries = isZmt ? zmtEntries : ltEntries;
-    if (!query) return entries.map(e => ({ ...e, match: -1 }));
-    return entries
-      .map(e => ({ ...e, match: e.key.indexOf(query) }))
-      .filter(r => r.match >= 0)
-      .sort((a, b) =>
-        (a.match === 0 ? 0 : 1) - (b.match === 0 ? 0 : 1) || a.head.localeCompare(b.head, 'lt'));
+    if (!query) return isZmt ? allZmtRows : allLtRows;
+    // Entries are already sorted, so keep prefix matches first and the rest after, in order.
+    const prefix: Row[] = [];
+    const inner: Row[] = [];
+    for (let i = 0; i < entries.length; i++) {
+      const entry = entries[i];
+      const match = entry.key.indexOf(query);
+      if (match < 0) continue;
+      (match === 0 ? prefix : inner).push({ entry, match, len: query.length });
+    }
+    return prefix.concat(inner);
   }, [query, isZmt]);
-
-  const renderItem = ({ item }: { item: Row }) => {
-    const head = capitalize(item.head);
-    const start = item.pos[item.match];
-    const keyEnd = item.match + query.length;
-    const end = keyEnd < item.pos.length ? item.pos[keyEnd] : head.length;
-    return (
-      <Pressable
-        onPress={() => copyToClipboard(wordText(item.word))}
-        style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}
-      >
-        <Text style={styles.head}>
-          {item.match >= 0 ? (
-            <>
-              {head.slice(0, start)}
-              <Text style={styles.highlight}>{head.slice(start, end)}</Text>
-              {head.slice(end)}
-            </>
-          ) : head}
-        </Text>
-        <Text style={styles.sub}>{item.sub}</Text>
-      </Pressable>
-    );
-  };
 
   return (
     <PaperBackground>
@@ -131,11 +148,14 @@ export default function Dictionary() {
       <FlatList
         style={styles.list}
         data={rows}
-        keyExtractor={item => item.word.id}
+        keyExtractor={item => item.entry.word.id}
         renderItem={renderItem}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
         initialNumToRender={15}
+        maxToRenderPerBatch={10}
+        windowSize={7}
+        removeClippedSubviews
         ListEmptyComponent={<Text style={styles.empty}>{lt ? 'Nieko nerasta' : 'Nieka nier'}</Text>}
       />
     </PaperBackground>
