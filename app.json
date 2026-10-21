@@ -5,7 +5,7 @@
     "platforms": [
       "android"
     ],
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./img/icon.png",
     "updates": {
@@ -19,7 +19,7 @@
     },
     "android": {
       "package": "com.mopixels.zemaiciozodisapp",
-      "versionCode": 5,
+      "versionCode": 6,
       "permissions": [
         "VIBRATE",
         "NOTIFICATIONS"
