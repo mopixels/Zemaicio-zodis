@@ -59,9 +59,6 @@ export default function Settings() {
           <Pressable onPress={() => Linking.openURL('mailto:dev.mopixels@gmail.com?subject=Žemaičio žodis')}>
             <Text style={styles.link}>dev.mopixels@gmail.com</Text>
           </Pressable>
-          <Pressable onPress={() => Linking.openURL('https://github.com/mopixels')}>
-            <Text style={styles.link}>github.com/mopixels</Text>
-          </Pressable>
           <Text style={styles.version}>Versija {Constants.expoConfig?.version}</Text>
         </View>
       </ScrollView>

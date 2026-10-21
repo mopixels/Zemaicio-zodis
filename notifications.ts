@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import * as Device from 'expo-device';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { randomWord } from './utils';
 import type { Language } from './types';
 
@@ -30,22 +31,49 @@ export const askNotificationPermission = async () => {
   }
 };
 
-// Schedules a repeating daily notification with a random word at the given time.
-export const scheduleDailyWord = (time: Date, language: Language) => {
-  const word = randomWord();
-  Notifications?.scheduleNotificationAsync({
-    content: {
-      title: language == 'lt' ? 'Dienos žodis:' : 'Deinos žuodis:',
-      body: `${word.title} - ${word.meaning}`,
-      sound: true,
-    },
-    trigger: {
-      type: Notifications.SchedulableTriggerInputTypes.DAILY,
-      channelId: 'default',
-      hour: time.getHours(),
-      minute: time.getMinutes(),
-    },
-  }).catch(e => console.warn(e));
+const DAYS_AHEAD = 90;
+
+export const scheduleDailyWord = async (time: Date, language: Language) => {
+  if (!Notifications) return;
+  const now = new Date();
+  for (let i = 0; i < DAYS_AHEAD; i++) {
+    const date = new Date(now);
+    date.setDate(now.getDate() + i);
+    date.setHours(time.getHours(), time.getMinutes(), 0, 0);
+    if (date <= now) continue;
+    const word = randomWord();
+    try {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: language == 'lt' ? 'Dienos žodis:' : 'Deinos žuodis:',
+          body: `${word.title} - ${word.meaning}`,
+          sound: true,
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.DATE,
+          channelId: 'default',
+          date,
+        },
+      });
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+};
+
+// Re-schedules the upcoming words (if subscribed) so the window never runs out.
+export const refreshDailyWords = async (language: Language) => {
+  try {
+    const on = await AsyncStorage.getItem('Switch value');
+    const stored = await AsyncStorage.getItem('Notification time');
+    if (!Notifications || on === null || JSON.parse(on) !== true || stored === null) return;
+    const time = new Date(JSON.parse(stored));
+    if (isNaN(time.getTime())) return;
+    await Notifications.cancelAllScheduledNotificationsAsync();
+    await scheduleDailyWord(time, language);
+  } catch (e) {
+    console.warn(e);
+  }
 };
 
 export const cancelNotifications = () =>

@@ -13,6 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'react-native';
 import { colors, fontAssets } from './theme';
+import { refreshDailyWords } from './notifications';
 import type { RootTabParamList } from './types';
 
 SplashScreen.preventAutoHideAsync();
@@ -33,6 +34,10 @@ const navigationTheme = {
 export default function App() {
 
   const [fontsLoaded] = useFonts(fontAssets);
+
+  useEffect(() => {
+    refreshDailyWords(store.getState().displayLanguage.language);
+  }, []);
 
   useEffect(() => {
     if (fontsLoaded) SplashScreen.hideAsync();
